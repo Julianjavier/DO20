@@ -12,8 +12,14 @@ module.exports = function(grunt){
 					hostname: 'localhost'
 				}
 			}
+		},
+		wiredep:{
+			task:{
+				src:['app/index.html']
+			}
 		}
 	});
+	grunt.loadNpmTasks('grunt-wiredep');
 	grunt.loadNpmTasks('grunt-php');
-	grunt.registerTask('server',['php']);
+	grunt.registerTask('server',['php', 'wiredep']);
 }

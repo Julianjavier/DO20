@@ -5,7 +5,7 @@ do20.config(['$routeProvider', function($routeProvider){
 		templateUrl:'view/form.html',
 		controller:'apiCtrl'
 	}).when('/dataResults',{
-		templateUrl:'view/view.html',
-		controller:'apiCtrl'
+		// templateUrl:'view/view.html',
+		// controller:'apiCtrl'
 	});
 }]);

@@ -1,4 +1,6 @@
 <?php
+	//This script will get the variables from angular so they may echo out the results,
+	//as well as making sure they are url safe. 
 	$cat = ($_GET['category']); 
 	$keyWord = ($_GET['keyWord']);
 	$urlSafeQuery = urlencode($keyWord);

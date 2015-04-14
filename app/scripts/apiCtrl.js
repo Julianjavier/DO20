@@ -17,24 +17,20 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		        	// console.log('Witch is', apiData.results[number].place_id);
 		        	// console.log('Witch is', apiData.results[number].rating);
 		        	// console.log('Witch is', apiData.results[number].vicinity);
-		        	$scope.data = apiData.results[number];       	
+		        	$scope.placeData = apiData.results[number];       	
 		        })
 		        .error(function(apiData){ 
 		        	console.log('NONO ',apiData); 
 		        });
-	    }else if ($scope.toDo.category == 'cooking') {
+	    }else if (category == 'cooking') {
 			//This will get information from thr yummly api and will have a finite result.
 			$http.get('../scripts/getYum.php?q='+ query)
 				.success(function(apiData){
 					var limit = apiData.matches.length;
 		        	var number = Math.floor(Math.random() * limit);
 		        	console.log('We got ', number);
-		        	console.log(apiData);
-		        	// console.log(apiData.matches[imageUrlsBySize].smallImageUrls);
-		        	// console.log(apiData.matches[ingredients]);
-		        	// console.log(apiData.matches[rating]);
-		        	// console.log(apiData.matches[recipeName]);
-		        	// console.log(apiData.matches[sourceDisplayName]);
+		        	console.log(apiData.matches[number].imageUrlsBySize[90]);
+		        	$scope.foodData = apiData.matches[number]; 
 				})
 				.error(function(apiData){
 					console.log('NONO ',apiData);

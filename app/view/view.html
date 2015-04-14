@@ -1,9 +1,23 @@
-<h1>This is a header for testing</h1>
+<div ng-if="placeData">
+	<h1>This is a header for testing</h1>
 
-<h3>NAME: {{data.name}}</h3>
+	<h3>NAME: {{placeData.name}}</h3>
 
-<h3>ID: {{data.place_id}}</h3>
+	<h3>ID: {{placeData.place_id}}</h3>
 
-<h3>RATING: {{data.rating}}</h3>
+	<h3>RATING: {{placeData.rating}}</h3>
 
-<h3>LOCATION: {{data.vicinity}}</h3>
+	<h3>LOCATION: {{placeData.vicinity}}</h3>
+</div>
+
+<div ng-if="foodData">
+	<h1>This is a header for testing</h1>
+
+	<h3>NAME: {{foodData.imageUrlsBySize[90]}}</h3>
+
+	<h3 ng-repeat='ingrediant in foodData.ingredients'>ID: {{ingrediant}}</h3>
+
+	<h3>RATING: {{foodData.rating}}</h3>
+
+	<h3>LOCATION: {{foodData.sourceDisplayName}}</h3>
+</div>

@@ -1,29 +1,33 @@
 <div ng-if="placeData">
 	<h1>This is a header for testing</h1>
 
-	<h3>NAME: {{placeData[number].name}}</h3>
+	<h3>NAME: {{placeData.name}}</h3>
 
-	<h3>ID: {{placeData[number].place_id}}</h3>
+	<h3>ID: {{placeData.place_id}}</h3>
 
-	<h3>RATING: {{placeData[number].rating}}</h3>
+	<h3>RATING: {{placeData.rating}}</h3>
 
-	<h3>LOCATION: {{placeData[number].vicinity}}</h3>
+	<h3>LOCATION: {{placeData.vicinity}}</h3>
 </div>
 
-<div ng-if="secondApiData">
+<div ng-if="foodData">
 	<h1>This is a header for testing</h1>
 
-	<h3>{{foodData[number].recipeName}}</h3>
+	<h3>{{foodData[0].recipeName}}</h3>
 
-	<img src="{{secondApiData.images[0].hostedLargeUrl}}">
+	<img src="{{foodData[1].images[0].hostedLargeUrl}}">
 
 	<ul>
-		<li ng-repeat='ingrediant in foodData[number].ingredients'>{{ingrediant}}</li>
+		<li ng-repeat='ingredient in foodData[1].ingredientLines'>{{ingredient}}</li>
 	</ul>
 	
-	<h3>RATING: {{foodData[number].rating}}</h3>
+	<h3>RATING: {{foodData[1].rating}}</h3>
 
-	<h3>LOCATION: {{foodData[number].sourceDisplayName}}</h3>
+	<h3>SERVING: {{foodData[1].numberOfServings}}</h3>
+
+	<h3>PROVIDED: {{foodData[1].source.sourceDisplayName}}</h3>
+
+	<h3>LOCATION: {{foodData[1].source.sourceRecipeUrl}}</h3>
 </div>
 
 <div>

@@ -16,11 +16,11 @@
     $raw_data = json_decode($output);
     //This is the end of the first call.
    	
-   	$number = count($raw_data->{'matches'});
-   	$randomInt = rand(0 , $number);
-
+   	$full_api = $raw_data->{'matches'};
+   	$number = array_rand($raw_data->{'matches'});
+   	
    	//Here I will isolate the data I need from the first call and second call.
-   	$api = $raw_data->{'matches'}[$randomInt];
+   	$api = $full_api[$number];
    	$id = $api->{'id'};
 
 	// echo json_encode($api);
@@ -36,12 +36,10 @@
     $second_output = curl_exec($ch2); 
     //This is the end of the second call.
     
-    echo "[".$second_output.",".json_encode($api)."]";
+    echo "[".json_encode($api).",".$second_output."]";
 
 
-
-
-    // close curl resource to free up system resources 
+	// close curl resource to free up system resources 
     curl_close($ch);
     curl_close($ch2);
 ?>

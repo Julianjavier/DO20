@@ -10,15 +10,13 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	var query = $routeParams.q
 	console.log(category);
 	console.log(query);
+	
 	if (category == 'restaurant' || category == 'entertainment') {
 		//this will call for the google places api, with already a filtered result.
 		$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query )
 	        .success(function(apiData){
 	        	console.log(apiData);
-		       	$scope.limit = apiData.results.length;
-		       	$scope.number = Math.floor(Math.random() * $scope.limit);
-		       	console.log('MAX IS', $scope.limit);
-		       	$scope.placeData = apiData.results;       	
+	        	$scope.placeData = apiData;     	
 		    })
 		    .error(function(apiData){ 
 		        console.log('NONO ',apiData); 
@@ -29,6 +27,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		$http.get('../scripts/getYum.php?q='+ query)
 			.success(function(apiData){
 				console.log(apiData);
+				$scope.foodData = apiData
 			})
 			.error(function(apiData){
 				console.log('NONO ',apiData);
@@ -50,10 +49,6 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	};
 
 	$scope.reroll = function(){
-		$scope.number = Math.floor(Math.random() * $scope.limit);
-		console.log('reroll fired');
-		console.log($scope.number);
-		console.log(score);	
 		
 		if(score > 0){
 			score = score - 2;

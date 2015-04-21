@@ -23,16 +23,12 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		    .error(function(apiData){ 
 		        console.log('NONO ',apiData); 
 		    });
+	
 	}else if (category == 'cooking') {
 		//This will get information from thr yummly api and will have a finite result.
 		$http.get('../scripts/getYum.php?q='+ query)
 			.success(function(apiData){
 				console.log(apiData);
-				$scope.limit = apiData.matches.length;
-		       	$scope.number = Math.floor(Math.random() * $scope.limit);
-		       	console.log('We got ', $scope.number);
-		        console.log(apiData.matches[$scope.number].imageUrlsBySize[90]);
-		        $scope.foodData = apiData.matches; 
 			})
 			.error(function(apiData){
 				console.log('NONO ',apiData);
@@ -47,7 +43,6 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		})
 		.success(function(data){
 			console.log('We got ', data);
-			var score = 20;
 		})
 		.error(function(data){
 			console.log()
@@ -58,7 +53,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		$scope.number = Math.floor(Math.random() * $scope.limit);
 		console.log('reroll fired');
 		console.log($scope.number);
-		console.log(score);
+		console.log(score);	
+		
 		if(score > 0){
 			score = score - 2;
 			if(score <= 0){

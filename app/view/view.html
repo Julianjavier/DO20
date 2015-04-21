@@ -10,12 +10,12 @@
 	<h3>LOCATION: {{placeData[number].vicinity}}</h3>
 </div>
 
-<div ng-if="foodData">
+<div ng-if="secondApiData">
 	<h1>This is a header for testing</h1>
 
 	<h3>{{foodData[number].recipeName}}</h3>
 
-	<img src="{{foodData[number].imageUrlsBySize[90]}}" style="width:200px">
+	<img src="{{secondApiData.images[0].hostedLargeUrl}}">
 
 	<ul>
 		<li ng-repeat='ingrediant in foodData[number].ingredients'>{{ingrediant}}</li>

@@ -1,10 +1,16 @@
-do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$routeParams', function($scope, $rootScope, $http, $location, $routeParams){
+do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$routeParams','$firebaseAuth', function($scope, $rootScope, $http, $location, $routeParams, $firebaseAuth){
 	//will fire once the submit button from the form to determine wich api to call
-	
-	//These will be test variables for test users
-	var user = 'Julian';
-	var id = '1';
-	var score = 3;
+	var ref = new Firebase("https://do20.firebaseio.com");
+	$scope.authObj = $firebaseAuth(ref);
+
+    $scope.authObj.$onAuth(function(authData) {
+	  if (authData) {
+	    console.log("Logged in as:", authData.uid);
+	  } else {
+	    console.log("Logged out");
+	  }
+	});
+
 	//these values are for api selections
 	var category = $routeParams.category
 	var query = $routeParams.q

@@ -20,29 +20,16 @@
 
 	$full_api = $raw_data->{'results'};
 	$number = array_rand($full_api);
-	$result = $full_api[1];
+	$result = $full_api[0];
+	$api = json_encode($result);
 
-	
-
+	//this simply verifies if the photo key is present and snds th proper information.
 	if (property_exists($result, 'photos') === true){
-		//This is the start of the second call.
-	    // create curl resource 
-	    $ch2 = curl_init(); 
-	    // set url 
-	    curl_setopt($ch2, CURLOPT_URL, "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$result->{'photos'}[0]->{'photo_reference'}."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4"); 
-	    //return the transfer as a string 
-	    curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1); 
-	    // $output contains the output string 
-	    $second_output = curl_exec($ch2); 
-	};
-
-	if (property_exists($result, 'photos') === true){
-		echo "[".json_encode($result).",".$second_output."]";
+		echo "[".$api.",".json_encode("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=".$result->{'photos'}[0]->{'photo_reference'}."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4")."]";
 	} else {
 		echo "[".json_encode($result)."]";
 	};
 
 	// close curl resource to free up system resources 
     curl_close($ch);
-    curl_close($ch2);
 ?>

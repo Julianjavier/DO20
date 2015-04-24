@@ -1,7 +1,7 @@
 <?php
 	//This script will get the variables from angular so they may echo out the results,
 	//as well as making sure they are url safe. 
-    $q = ($_GET['q']); 
+  $q = ($_GET['q']); 
 	$urlSafeQuery = urlencode($q);
     
    	//This is the start of the first call.
@@ -23,9 +23,7 @@
    	$api = $full_api[$number];
    	$id = $api->{'id'};
 
-	// echo json_encode($api);
-
-	//This is the start of the second call.
+	  //This is the start of the second call.
     // create curl resource 
     $ch2 = curl_init(); 
     // set url 

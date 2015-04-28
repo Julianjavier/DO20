@@ -1,6 +1,10 @@
 <header>
-	<div>
+	<div ng-if="AuthData == null">
 		<button ng-click="facebookLogin()" name="facebookLogin">Facebook Login</button>
 		<button ng-click="googleLogin()" name="googleLogin">Google Login</button>
+	</div>
+
+	<div ng-if="AuthData !== null">
+		<h1>You are in</h1>
 	</div>
 </header>

@@ -1,15 +1,4 @@
-do20.controller('homeCtrl', ['$scope', '$rootScope', '$location', '$firebaseAuth', function($scope, $rootScope, $location, $firebaseAuth){
-	var ref = new Firebase("https://do20.firebaseio.com");
-
-	$scope.authObj = $firebaseAuth(ref);
-
-    $scope.authObj.$onAuth(function(authData) {
-	  if (authData) {
-	    console.log("Logged in as:", authData);
-	  } else {
-	    console.log("Logged out");
-	  }
-	});
+do20.controller('homeCtrl', ['$scope', '$rootScope', '$location', '$firebaseAuth', '$http', function($scope, $rootScope, $location, $firebaseAuth, $http){
 
 	$scope.submit = function(){
 		var category = $scope.toDo.category;
@@ -17,23 +6,13 @@ do20.controller('homeCtrl', ['$scope', '$rootScope', '$location', '$firebaseAuth
 		$location.path('/dataResults/'+category+'/'+query);	  
 	};
 
-	$scope.facebookLogin = function(){
-		console.log("we fired facebook!");
-		$scope.authObj.$authWithOAuthPopup("facebook").then(function(authData) {
-		  console.log("Logged in as:", authData.uid);
-		}).catch(function(error) {
-		  console.error("Authentication failed:", error);
-		});
-	};
-
-	$scope.googleLogin = function(){
-		console.log("we fired google!");
-		$scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
-		  console.log("Logged in as:", authData.uid);
-		}).catch(function(error) {
-		  console.error("Authentication failed:", error);
-		});	
-	};
+	$http.get('../scripts/getUserData.php?id=1&user=Julian' )
+	        .success(function(apiData){
+	        	console.log(apiData);	
+		    })
+		    .error(function(apiData){ 
+		        console.log('NONO ',apiData); 
+		    });
 
 
 }]);

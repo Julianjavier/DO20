@@ -1,4 +1,4 @@
-<ng-include src="'view/loginBnt.html'"></ng-include>
+<ng-include ng-controller="MyAuthCtrl" src="'view/nav.html'"></ng-include>
 
 <form ng-submit="submit()">
 	<input type="text" ng-model="toDo.category" name="category" placeholder="Category">

@@ -1,9 +1,9 @@
-<ng-include ng-if="!authData" src="'view/loginBnt.html'"></ng-include>
+<ng-include ng-controller="MyAuthCtrl" src="'view/nav.html'"></ng-include>
 
 <div ng-if="placeData">
 	<h1>This is a header for testing</h1>
 
-	<img src="{{placeData[1]}}">
+	<img ng-if="placeData[1] != null " src="{{placeData[1]}}">
 	
 	<h3>NAME: {{placeData[0].name}}</h3>
 
@@ -19,7 +19,7 @@
 	
 	<h3>{{foodData[0].recipeName}}</h3>
 
-	<img src="{{foodData[1].images[0].hostedLargeUrl}}">
+	<img ng-if="{{foodData[1].images[0].hostedLargeUrl}}" src="{{foodData[1].images[0].hostedLargeUrl}}">
 
 	<ul>
 		<li ng-repeat='ingredient in foodData[1].ingredientLines'>{{ingredient}}</li>
@@ -35,6 +35,6 @@
 </div>
 
 <div>
-	<button ng-if="authData" ng-click="confirm()">LET'S GO</button>
+	<button ng-click="confirm()">LET'S GO</button>
 	<button ng-click="reroll()">RE ROLL</button>
 </div>

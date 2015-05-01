@@ -1,6 +1,6 @@
 <?
-$user = ($_GET['user']); 
 $id = ($_GET['id']);
+$points = ($_GET['points']);
 $mongo = new Mongo();
 $rawData = $mongo ->selectDb('do20')->selectCollection('testData');
 

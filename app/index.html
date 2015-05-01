@@ -16,7 +16,9 @@
 	<script type="text/javascript" src="scripts/apiCtrl.js"></script>
 	<script type="text/javascript" src="scripts/myAuthCtrl.js"></script>
 </head>
-<body>
+<ng-include ng-controller="MyAuthCtrl" src="'view/nav.html'"></ng-include>
+<body class="wrapper">
 	<ng-view></ng-view>
 </body>
+<footer></footer>
 </html>

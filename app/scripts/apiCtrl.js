@@ -6,8 +6,9 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	$scope.authObj = $firebaseAuth(ref);
 
 	//This is a starting base variable for this search session
-	var score = 20
-
+	var score = 20;
+	$scope.stat = false;
+	console.log('We got ', $scope.stat);
 
 	//these values are for api selections
 	var category = $routeParams.category
@@ -45,9 +46,10 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 
 	    $scope.authObj.$onAuth(function(authData) {
 		  if (authData) {
-			$http({ method: 'POST', url: '../scripts/mongoTestConection.php?user='+user+'&id='+id+'&points='+score
+			$http({ method: 'POST', url: '../scripts/mongoTestConection.php?id='+authData.uid+'&points='+score
 			}).success(function(data){
-				console.log('We got ', data);
+				$scope.stat = true;
+				console.log('We got ', $scope.stat);
 			}).error(function(data){
 				console.log()
 			});		  	

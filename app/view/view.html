@@ -1,40 +1,45 @@
-<ng-include ng-controller="MyAuthCtrl" src="'view/nav.html'"></ng-include>
+<div class="results">
+	<div ng-if="placeData">
+		<h1>This is a header for testing</h1>
 
-<div ng-if="placeData">
-	<h1>This is a header for testing</h1>
+		<img ng-if="placeData[1] != null " src="{{placeData[1]}}">
+		
+		<h3>NAME: {{placeData[0].name}}</h3>
 
-	<img ng-if="placeData[1] != null " src="{{placeData[1]}}">
-	
-	<h3>NAME: {{placeData[0].name}}</h3>
+		<h3>ID: {{placeData[0].place_id}}</h3>
 
-	<h3>ID: {{placeData[0].place_id}}</h3>
+		<h3>RATING: {{placeData[0].rating}}</h3>
 
-	<h3>RATING: {{placeData[0].rating}}</h3>
+		<h3>LOCATION: {{placeData[0].vicinity}}</h3>
+	</div>
 
-	<h3>LOCATION: {{placeData[0].vicinity}}</h3>
-</div>
+	<div ng-if="foodData">
+		<h1>This is a header for testing</h1>
+		
+		<h3>{{foodData[0].recipeName}}</h3>
 
-<div ng-if="foodData">
-	<h1>This is a header for testing</h1>
-	
-	<h3>{{foodData[0].recipeName}}</h3>
+		<img ng-if="{{foodData[1].images[0].hostedLargeUrl}}" src="{{foodData[1].images[0].hostedLargeUrl}}">
 
-	<img ng-if="{{foodData[1].images[0].hostedLargeUrl}}" src="{{foodData[1].images[0].hostedLargeUrl}}">
+		<ul>
+			<li ng-repeat='ingredient in foodData[1].ingredientLines'>{{ingredient}}</li>
+		</ul>
+		
+		<h3>RATING: {{foodData[1].rating}}</h3>
 
-	<ul>
-		<li ng-repeat='ingredient in foodData[1].ingredientLines'>{{ingredient}}</li>
-	</ul>
-	
-	<h3>RATING: {{foodData[1].rating}}</h3>
+		<h3>SERVING: {{foodData[1].numberOfServings}}</h3>
 
-	<h3>SERVING: {{foodData[1].numberOfServings}}</h3>
+		<h3>PROVIDED: {{foodData[1].source.sourceDisplayName}}</h3>
 
-	<h3>PROVIDED: {{foodData[1].source.sourceDisplayName}}</h3>
+		<h3>LOCATION: {{foodData[1].source.sourceRecipeUrl}}</h3>
+	</div>
 
-	<h3>LOCATION: {{foodData[1].source.sourceRecipeUrl}}</h3>
-</div>
+	<div ng-hide="stat">
+		<button ng-click="confirm()">LET'S GO</button>
+		<button ng-click="reroll()">RE ROLL</button>
+	</div>
 
-<div>
-	<button ng-click="confirm()">LET'S GO</button>
-	<button ng-click="reroll()">RE ROLL</button>
+	<div ng-show="stat">
+		<h2>HAVE FUN!</h2>
+	</div>
+
 </div>

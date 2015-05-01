@@ -6,13 +6,4 @@ do20.controller('homeCtrl', ['$scope', '$rootScope', '$location', '$firebaseAuth
 		$location.path('/dataResults/'+category+'/'+query);	  
 	};
 
-	$http.get('../scripts/getUserData.php?id=1&user=Julian' )
-	        .success(function(apiData){
-	        	console.log(apiData);	
-		    })
-		    .error(function(apiData){ 
-		        console.log('NONO ',apiData); 
-		    });
-
-
 }]);

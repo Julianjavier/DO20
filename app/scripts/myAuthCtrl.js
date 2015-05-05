@@ -4,7 +4,9 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$http",
 
     $scope.authObj.$onAuth(function(authData) {
 	  if(authData){
+	  	//This will provide the data form the specified login provider.
 	  	$rootScope.AuthData = authData;
+	  	console.log($rootScope.AuthData);
     	
     	if(authData.provider == "facebook"){
 	    	//This will check user information on our mongo database.
@@ -13,6 +15,7 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$http",
 	        .success(function(mongoData){
 	        	console.log(mongoData);
 	        	$scope.ID = authData.uid;	
+	        	$scope.img = facebookObject.picture.data.url
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ',mongoData); 
@@ -20,10 +23,11 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$http",
 		    //end mongo call.
     	}else if(authData.provider == "google"){
 	    	//This will check user information on our mongo database.
-	    	var facebookObject = authData.google.cachedUserProfile;
+	    	var googleObject = authData.google.cachedUserProfile;
 	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name)
 	        .success(function(mongoData){
-	        	console.log(mongoData);	
+	        	console.log(mongoData);
+	        	$scope.img = googleObject.picture;	
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ',mongoData); 

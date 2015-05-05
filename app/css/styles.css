@@ -1,0 +1,36 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+header{
+	height:90px;
+	background-image: url("../img/shattered.png");
+    border-bottom: 10px solid #EA5F28;
+}
+
+header img{
+	width:150px;
+	text-align:center;
+	position:relative;
+	left: 41%;
+    top: -22px;
+}
+
+.loginModel{
+	box-sizing: border-box;
+	background-color:#000;
+	display:block;
+	border-top: 10px solid #EA5F28;
+	padding-left:20px;
+	padding-top:60px;
+	width:200px;
+	height:300px;
+}
+
+.loginModel button{
+	display:block;
+	margin-bottom:40px;
+	width:150px;
+	height:30px;
+}

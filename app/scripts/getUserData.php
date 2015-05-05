@@ -24,11 +24,10 @@ if ($key == true) {
 			"id" => $id,
 			"score"=> intval(0)
 			)
-	);	
+		);	
 
 		$data = $cursor->find( $filter );
-		echo json_encode(iterator_to_array($data1));	
-	
+		echo json_encode(iterator_to_array($data));	
 	}else{
 		echo json_encode(iterator_to_array($data));	
 	};

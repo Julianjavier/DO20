@@ -33,4 +33,24 @@ header img{
 	margin-bottom:40px;
 	width:150px;
 	height:30px;
+	color:#fff;
+	text-transform: uppercase;
+	outline:0;
+	border:0;
+}
+
+.loginModel #facebook{
+	background-color:#3b5998;
+}
+
+.loginModel #google{
+	background-color:#dd4b39;
+}
+
+.loginModel #twitter{
+	background-color:#4099FF;
+}
+
+map{
+	width:50%;
 }

@@ -16,14 +16,14 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	console.log(category);
 	console.log(query);
 	
-	if (category == 'restaurant' || category == 'entertainment') {
+	if (category == 'restaurant' || category == 'establishment') {
 		//this will call for the google places api, with already a filtered result.
 		$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query )
 	        .success(function(apiData){
 	        	console.log(apiData);
 	        	$scope.placeData = apiData; 
 	        	$scope.latitude = apiData[0].geometry.location.lat;
-	        	$scope.latitude = apiData[0].geometry.location.lng;  	
+	        	$scope.longitude = apiData[0].geometry.location.lng;  	
 		    })
 		    .error(function(apiData){ 
 		        console.log('NONO ',apiData); 

@@ -3,6 +3,10 @@
 		<h1>This is a header for testing</h1>
 
 		<img ng-if="placeData[1] != null " src="{{placeData[1]}}">
+
+		<map center="{{latitude}},{{longitude}}" zoom="15" disable-default-u-i="true" >
+			<marker position="{{latitude}},{{longitude}}" title="Hello World!"></marker>
+		</map>
 		
 		<h3>NAME: {{placeData[0].name}}</h3>
 

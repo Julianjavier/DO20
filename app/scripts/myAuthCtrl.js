@@ -1,4 +1,4 @@
-do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$http", function($scope, $firebaseAuth, $rootScope, $http) {
+do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
 

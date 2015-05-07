@@ -1,5 +1,10 @@
 <form ng-submit="submit()">
-	<button name="submit">SUBMIT</button>
-	<input type="text" ng-model="toDo.category" name="category" placeholder="Category">
-	<input type="text" ng-model="toDo.keyword" name="keyword" placeholder="Keyword">
+	<a ng-click="submitForm()"><img src="img/go.png" title="Search" /></a>
+	<div>
+		<div class="select-style">
+			<select type="text" ng-model="category" name="category" ng-options="option.value as option.name for option in category">
+			</select>
+		</div>
+		<input type="text" ng-model="toDo.keyword" name="keyword" placeholder="Keyword">
+	</div>
 </form>

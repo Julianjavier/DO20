@@ -40,6 +40,22 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	    console.log("Logged out", authData);
 	  }
 	});
+
+	//This will hold the instance for the login modal window.
+	$scope.openForm = function () {
+		var modalInstance = $modal.open({
+		    animation: true,
+		    templateUrl: 'view/loginModle.html',
+		    controller: 'ModalInstanceCtrl'
+		});
+   	}
+
+	$scope.cancel = function () {
+ 		$modalInstance.dismiss('cancel');
+	};
+
+	//this is where the controllos for the modal end
+
 	
 	$scope.facebookLogin = function(){
 		console.log("we fired facebook!");
@@ -59,5 +75,5 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 		});	
 	};
 
-  }
-]);
+}]);
+

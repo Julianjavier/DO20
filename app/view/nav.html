@@ -1,8 +1,14 @@
 <header>
-
-	<div class="" ng-if="AuthData !== null">
-		<h1>You are in</h1>
+	<div class="avatar" ng-if="AuthData !== null">
 		<img src="{{img}}">
+	</div>
+
+	<button class="login" ng-click="openForm()" ng-if="AuthData == null">
+		<img src="img/login.png">
+	</button>
+
+	<div class="score" ng-if="AuthData == null">
+		<img src="img/login.png">
 	</div>
 
 	<img class="logo" src="img/logo.png">

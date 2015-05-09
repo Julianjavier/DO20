@@ -15,26 +15,56 @@ header .logo{
 	width:150px;
 	position:absolute;
 	left: 50%;
-	margin-left:-75px;
     top: 13px;
+    margin-left:-75px;
+
 }
+
+header .score{
+	width:50px;
+	position:absolute;
+	top: 18px;
+	right: 2%;
+}
+
+header .login{
+	-webkit-appearance:none;
+	background:transparent;
+	border:0;
+	outline:none;
+	padding:0;
+	width:50px;
+	position:absolute;
+	top: 18px;
+	left: 2%;
+}
+
+header .login img, header .score img {
+	width:100%;
+}
+
+header .avatar{
+	border-radius: 150px 150px 150px 150px;
+	-webkit-border-radius: 150px 150px 150px 150px;
+	-moz-border-radius: 150px 150px 150px 150px;	
+} 
 
 .loginModel{
 	box-sizing: border-box;
 	background-color:#000;
 	display:block;
 	border-top: 10px solid #EA5F28;
-	padding-left:20px;
 	padding-top:60px;
-	width:200px;
-	height:300px;
+	padding-bottom:60px;
+	width:100%;
 }
 
 .loginModel button{
 	display:block;
+	margin:0px auto;
 	margin-bottom:40px;
-	width:150px;
-	height:30px;
+	width:50%;
+	height:50px;
 	color:#fff;
 	text-transform: uppercase;
 	outline:0;
@@ -57,12 +87,17 @@ map{
 	width:50%;
 }
 
+form{
+	margin:0 auto;
+	width:40%;
+}
+
 form *{
 	display:block;
 }
 
 form div{
-	width:30%;
+	margin:0 auto;
 }
 
 form input, form .select-style{
@@ -76,6 +111,18 @@ form input, form .select-style{
 	border-radius:0;
 	border-style:solid;
 	border-color:#A0A0A0;
+}
+
+form button{
+	-webkit-appearance:none;
+	background:transparent;
+	border:0;
+	outline:none;
+	width:100%;
+}
+
+form button img{
+	width:100%;
 }
 
 form .select-style{

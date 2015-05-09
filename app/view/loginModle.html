@@ -1,14 +1,10 @@
-<!-- <div class="loginModel" ng-if="AuthData == null">
-	<button ng-click="facebookLogin()" name="facebookLogin">Facebook Login</button>
-	<button ng-click="googleLogin()" name="googleLogin">Google Login</button>
-</div> -->
-
-<map center="28.593927028,-81.2941610" zoom="15" disable-default-u-i="true" >
+<!-- <map center="28.593927028,-81.2941610" zoom="15" disable-default-u-i="true" >
 	<marker position="28.593927028,-81.2941610" title="Hello World!"></marker>
-</map>
+</map> -->
 
-<div class="loginModel">
+<div class="loginModel" ng-controller="myAuthCtrl">
 	<button ng-click="facebookLogin()" id="facebook" name="facebookLogin">Facebook Login</button>
 	<button ng-click="googleLogin()" id="google" name="googleLogin">Google Login</button>
 	<button ng-click="googleLogin()" id="twitter" name="twitterLogin">Twitter Login</button>
+	<button ng-click="cancel()" >Cancel</button>
 </div>

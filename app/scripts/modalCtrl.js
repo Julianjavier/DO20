@@ -1,7 +1,7 @@
 do20.controller("ModalInstanceCtrl", ["$scope", "$firebaseAuth",  function($scope, $firebaseAuth, $modalInstance){
   var ref = new Firebase("https://do20.firebaseio.com");
   $scope.authObj = $firebaseAuth(ref);
-  
+
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };

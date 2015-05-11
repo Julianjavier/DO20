@@ -21,9 +21,10 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query )
 	        .success(function(apiData){
 	        	console.log(apiData);
-	        	$scope.placeData = apiData; 
-	        	$scope.latitude = apiData[0].geometry.location.lat;
-	        	$scope.longitude = apiData[0].geometry.location.lng;  	
+	        	$scope.placeData = apiData;
+	        	$scope.status = apiData.opening_hours.open_now; 
+	        	$scope.latitude = apiData.geometry.location.lat;
+	        	$scope.longitude = apiData.geometry.location.lng;  	
 		    })
 		    .error(function(apiData){ 
 		        console.log('NONO ',apiData); 

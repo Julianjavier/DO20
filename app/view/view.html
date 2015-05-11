@@ -1,25 +1,30 @@
 <div class="results">
 	<div ng-if="placeData">
-		<h1>This is a header for testing</h1>
 
 		<div class="visData">
-			<img ng-if="placeData[1] != null " src="{{placeData[1]}}">
-
 			<map center="{{latitude}},{{longitude}}" zoom="15" disable-default-u-i="true" >
 				<marker position="{{latitude}},{{longitude}}" title="Hello World!"></marker>
 			</map>
+
+			<!-- <img ng-if="placeData[1] != null " src="{{placeData[1]}}"> -->
+		</div>			
+		<hr>
+		<div>
+			<h1>{{placeData.name}}</h1>
+
+			<h3>{{placeData.rating}}</h3>
+
+			<h3 ng-if="status == true">Open</h3>
+			<h3 ng-if="status == false">Closed</h3>
+			<ul>
+				<li ng-repeat="times in placeData.opening_hours.weekday_text track by $index">{{times}}</li>
+			</ul>
+
+			<h3>{{placeData.vicinity}}</h3>
 		</div>
-		
-		<h3>NAME: {{placeData[0].name}}</h3>
-
-		<h3>ID: {{placeData[0].place_id}}</h3>
-
-		<h3>RATING: {{placeData[0].rating}}</h3>
-
-		<h3>LOCATION: {{placeData[0].vicinity}}</h3>
 	</div>
 
-	<!-- <div ng-if="foodData">
+	<div ng-if="foodData">
 		<h1>This is a header for testing</h1>
 		
 		<h3>{{foodData[0].recipeName}}</h3>
@@ -37,7 +42,7 @@
 		<h3>PROVIDED: {{foodData[1].source.sourceDisplayName}}</h3>
 
 		<h3>LOCATION: {{foodData[1].source.sourceRecipeUrl}}</h3>
-	</div> -->
+	</div>
 
 	<div ng-hide="stat">
 		<button ng-click="confirm()">LET'S GO</button>

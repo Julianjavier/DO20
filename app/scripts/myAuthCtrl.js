@@ -1,4 +1,4 @@
-do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http){
+do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
 
@@ -14,7 +14,8 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name)
 	        .success(function(mongoData){
 	        	console.log(mongoData);
-	        	$scope.ID = authData.uid;	
+	        	$scope.ID = authData.uid;
+	        	// $scope.score = authData.score;	
 	        	$scope.img = facebookObject.picture.data.url
 		    })
 		    .error(function(mongoData){ 
@@ -43,6 +44,7 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 
 	//This will hold the instance for the login modal window.
 	$scope.openForm = function () {
+		console.log("Open Fire")
 		var modalInstance = $modal.open({
 		    animation: true,
 		    templateUrl: 'view/loginModle.html',
@@ -50,10 +52,9 @@ do20.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 		});
    	}
 
-	$scope.cancel = function () {
- 		$modalInstance.dismiss('cancel');
-	};
-
+	// $scope.cancel = function () {
+ // 		$modalInstance.dismiss('cancel');
+	// };
 	//this is where the controllos for the modal end
 
 	

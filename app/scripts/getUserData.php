@@ -26,10 +26,11 @@ if ($key == true) {
 			)
 		);	
 
-		$data = $cursor->find( $filter );
-		echo json_encode(iterator_to_array($data));	
+		$data = $cursor->find($filter);
+		$id = $data->_id;
+		echo "[".json_encode(iterator_to_array($data))."]";	
 	}else{
-		echo json_encode(iterator_to_array($data));	
+		echo "[".json_encode(iterator_to_array($data))."]";
 	};
 
 }

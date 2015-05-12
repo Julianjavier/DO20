@@ -9,48 +9,55 @@
 			<!-- <img ng-if="placeData[1] != null " src="{{placeData[1]}}"> -->
 		</div>			
 		<hr>
-		<div>
+		<div class="data">
 			<h1>{{placeData.name}}</h1>
 
 			<h3>{{placeData.rating}}</h3>
 
-			<h3 ng-if="status == true">Open</h3>
-			<h3 ng-if="status == false">Closed</h3>
+			<p><strong>Address:</strong> {{placeData.vicinity}}</p>
+			
+			<h3 ng-if="status == true" id="open" >Open</h3>
+			<h3 ng-if="status == false" id="closed" >Closed</h3>
 			<ul>
 				<li ng-repeat="times in placeData.opening_hours.weekday_text track by $index">{{times}}</li>
 			</ul>
+			
+			<div ng-hide="stat">
+				<button ng-click="confirm()">LET'S GO</button>
+				<button ng-click="reroll()">RE ROLL</button>
+			</div>
 
-			<h3>{{placeData.vicinity}}</h3>
-		</div>
+			<div ng-show="stat">
+				<h2>HAVE FUN!</h2>
+			</div>			
+
+		</div>	
 	</div>
 
 	<div ng-if="foodData">
-		<h1>This is a header for testing</h1>
+		<div class="visData">
+			<img src="{{img}}">
+		</div>
+		<hr>
+		<div class="data">
+			<h1>{{foodData[0].name}}</h1>
+			<h3>{{foodData[0].rating}}</h3>
+			<h3>Ingredients:</h3>
+			<ul>
+				<li ng-repeat="ingredients in foodData[0].ingredientLines track by $index">{{ingredients}}</li>
+			</ul>
+			<p><strong>{{foodData[0].yield}}</strong></p>
+			<p><strong>Total Time:</strong> {{foodData[0].totalTime}}</p>
+			
+			<div ng-hide="stat">
+				<button ng-click="confirm()">LET'S GO</button>
+				<button ng-click="reroll()">RE ROLL</button>
+			</div>
+
+			<div ng-show="stat">
+				<h2>HAVE FUN!</h2>
+			</div>			
 		
-		<h3>{{foodData[0].recipeName}}</h3>
-
-		<img ng-if="{{foodData[1].images[0].hostedLargeUrl}}" src="{{foodData[1].images[0].hostedLargeUrl}}">
-
-		<ul>
-			<li ng-repeat='ingredient in foodData[1].ingredientLines'>{{ingredient}}</li>
-		</ul>
-		
-		<h3>RATING: {{foodData[1].rating}}</h3>
-
-		<h3>SERVING: {{foodData[1].numberOfServings}}</h3>
-
-		<h3>PROVIDED: {{foodData[1].source.sourceDisplayName}}</h3>
-
-		<h3>LOCATION: {{foodData[1].source.sourceRecipeUrl}}</h3>
+		</div>
 	</div>
-
-	<div ng-hide="stat">
-		<button ng-click="confirm()">LET'S GO</button>
-		<button ng-click="reroll()">RE ROLL</button>
-	</div>
-
-	<div ng-show="stat">
-		<h2>HAVE FUN!</h2>
-	</div>
-
 </div>

@@ -16,32 +16,38 @@
     //This is the end of the api call.
 
 	$full_api = $raw_data->{'results'};
-	$number = array_rand($full_api);
-	$result = $full_api[$number];
-	$id = $result->place_id;
-	// $api = json_encode($result);
 	
-	//From here on, this is the second call for the place details
-	curl_setopt($ch, CURLOPT_URL,"https://maps.googleapis.com/maps/api/place/details/json?placeid=".$id."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4" );
-	//return the transfer as a string 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	// $secondOutput contains the output string 
-	$secondOutput = curl_exec($ch); 
-	$second_data = json_decode($secondOutput);
-    //This is the end of the api call.
+	if (count($full_api)){
+		$number = array_rand($full_api);
+		$result = $full_api[$number];
+		$id = $result->place_id;
+		// $api = json_encode($result);
+		
+		//From here on, this is the second call for the place details
+		curl_setopt($ch, CURLOPT_URL,"https://maps.googleapis.com/maps/api/place/details/json?placeid=".$id."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4" );
+		//return the transfer as a string 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		// $secondOutput contains the output string 
+		$secondOutput = curl_exec($ch); 
+		$second_data = json_decode($secondOutput);
+	    //This is the end of the api call.
 
-	$full_details = $second_data->{'result'};
+		$full_details = $second_data->{'result'};
 
-	echo json_encode($full_details);
-	//This ends the second call.
+		echo json_encode($full_details);
+		//This ends the second call.
 
-	//This simply verifies if the photo key is present and snds th proper information.
-	// if (property_exists($result, 'photos') === true){
-	// 	echo "[".$api.",".json_encode("https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheigh=200&photoreference=".$result->{'photos'}[0]->{'photo_reference'}."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4")."]";
-	// } else {
-	// 	echo "[".json_encode($result)."]";
-	// };
+		//This simply verifies if the photo key is present and snds th proper information.
+		// if (property_exists($result, 'photos') === true){
+		// 	echo "[".$api.",".json_encode("https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheigh=200&photoreference=".$result->{'photos'}[0]->{'photo_reference'}."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4")."]";
+		// } else {
+		// 	echo "[".json_encode($result)."]";
+		// };
 
-	// close curl resource to free up system resources 
+		// close curl resource to free up system resources 
+	}else{
+		echo null;
+	}
+
     curl_close($ch);
 ?>

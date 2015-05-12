@@ -1,4 +1,4 @@
-do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$routeParams','$firebaseAuth', function($scope, $rootScope, $http, $location, $routeParams, $firebaseAuth){
+do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$routeParams','$firebaseAuth', '$location', function($scope, $rootScope, $http, $location, $routeParams, $firebaseAuth, $location){
 	//will fire once the submit button from the form to determine wich api to call
 	
 	//These are the set up for the firebase connection
@@ -20,11 +20,16 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		//this will call for the google places api, with already a filtered result.
 		$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query )
 	        .success(function(apiData){
+	        	if (apiData !== null){
 	        	console.log(apiData);
 	        	$scope.placeData = apiData;
 	        	$scope.status = apiData.opening_hours.open_now; 
 	        	$scope.latitude = apiData.geometry.location.lat;
-	        	$scope.longitude = apiData.geometry.location.lng;  	
+	        	$scope.longitude = apiData.geometry.location.lng;  
+	        	}else{
+	        		console.log("we got nothing");
+	        		// $location.path('/')
+	        	};	
 		    })
 		    .error(function(apiData){ 
 		        console.log('NONO ',apiData); 
@@ -34,8 +39,14 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		//This will get information from thr yummly api and will have a finite result.
 		$http.get('../scripts/getYum.php?q='+ query)
 			.success(function(apiData){
+				if (apiData !== null){
 				console.log(apiData);
-				$scope.foodData = apiData
+				$scope.foodData = apiData;
+				$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
+				}else{
+	        		console.log("we got nothing");
+	        		// $location.path('/')
+	        	};
 			})
 			.error(function(apiData){
 				console.log('NONO ',apiData);
@@ -64,12 +75,14 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	$scope.reroll = function(){
 		if (category == 'restaurant' || category == 'entertainment') {
 			//this will call for the google places api, with already a filtered result.
-			$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query )
+			$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query)
 		        .success(function(apiData){
 		        	console.log(apiData);
 		        	$scope.placeData = apiData; 
-		        	$scope.latitude = apiData[0].geometry.location.lat;
-		        	$scope.latitude = apiData[0].geometry.location.lng;     	
+		        	$scope.latitude = apiData.geometry.location.lat;
+		        	$scope.longitude = apiData.geometry.location.lng;
+		        	console.log($scope.latitude); 
+		        	console.log($scope.longitude);    	
 			    })
 			    .error(function(apiData){ 
 			        console.log('NONO ',apiData); 
@@ -80,7 +93,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			$http.get('../scripts/getYum.php?q='+ query)
 				.success(function(apiData){
 					console.log(apiData);
-					$scope.foodData = apiData
+					$scope.foodData = apiData;
+					$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
 				})
 				.error(function(apiData){
 					console.log('NONO ',apiData);

@@ -46,8 +46,8 @@
 
 		// close curl resource to free up system resources 
 	}else{
-		echo "derp";
+		echo "IT FAILED";
 	}
 
     curl_close($ch);
-?>
+?>	

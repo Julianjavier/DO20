@@ -9,7 +9,7 @@ $key = true;
 
 if ($key == true) {
 	$mongo = new Mongo();
-	$cursor = $mongo ->selectDb('do20')->selectCollection('testData');
+	$cursor = $mongo ->selectDb('do20')->selectCollection('userData');
 
 	$filter = array('id' => $id);
 
@@ -22,7 +22,8 @@ if ($key == true) {
 			"firstName" => $firstName,
 			"lastName" => $lastName,
 			"id" => $id,
-			"score"=> intval(0)
+			"score" => intval(0),
+			"tasks" => intval(0)
 			)
 		);	
 

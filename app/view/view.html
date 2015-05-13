@@ -15,7 +15,8 @@
 			<h3>{{placeData.rating}}</h3>
 
 			<p><strong>Address:</strong> {{placeData.vicinity}}</p>
-			
+			<p><strong>Phone:</strong> {{placeData.formatted_phone_number}}</p>
+
 			<h3 ng-if="status == true" id="open" >Open</h3>
 			<h3 ng-if="status == false" id="closed" >Closed</h3>
 			<ul>
@@ -23,8 +24,8 @@
 			</ul>
 			
 			<div ng-hide="stat">
-				<button ng-click="confirm()">LET'S GO</button>
-				<button ng-click="reroll()">RE ROLL</button>
+				<button id="confirm" ng-click="confirm()">LET'S GO</button>
+				<button id="roll" ng-click="reroll()">RE ROLL</button>
 			</div>
 
 			<div ng-show="stat">
@@ -50,8 +51,8 @@
 			<p><strong>Total Time:</strong> {{foodData[0].totalTime}}</p>
 			
 			<div ng-hide="stat">
-				<button ng-click="confirm()">LET'S GO</button>
-				<button ng-click="reroll()">RE ROLL</button>
+				<button id="confirm" ng-click="confirm()">LET'S GO</button>
+				<button id="roll" ng-click="reroll()">RE ROLL</button>
 			</div>
 
 			<div ng-show="stat">

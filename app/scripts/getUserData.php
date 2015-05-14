@@ -8,10 +8,10 @@ $id = ($_GET['id']);
 $key = true;
 
 if ($key == true) {
-	$mongo = new Mongo();
+	$mongo = new MongoClient("mongodb://${Bodark216}:${Durandal216}@localhost");
 	$cursor = $mongo ->selectDb('do20')->selectCollection('userData');
 
-	$filter = array('id' => $id);
+	$filter = array('firstName' => $firstName);
 
 	$data = $cursor->find( $filter );
 	$length = count(iterator_to_array($data));
@@ -22,7 +22,7 @@ if ($key == true) {
 			"firstName" => $firstName,
 			"lastName" => $lastName,
 			"id" => $id,
-			"score" => intval(0),
+			"score"=> intval(0),
 			"tasks" => intval(0)
 			)
 		);	

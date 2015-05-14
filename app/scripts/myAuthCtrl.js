@@ -28,8 +28,7 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name)
 	        .success(function(mongoData){
 	        	console.log(mongoData);
-	        	$scope.img = googleObject.picture;
-	        	console.log($scope.img);	
+	        	$scope.img = googleObject.picture;	
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ',mongoData); 

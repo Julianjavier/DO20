@@ -9,8 +9,8 @@ $key = true;
 
 echo "Before connection";
 if ($key == true) {
-	echo "after IF";
-	$mongo = new MongoClient("mongodb://Bodark216:Durandal216@localhost");
+	echo " after IF";
+	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost");
 	echo "after connection";
 
 	// $cursor = $mongo ->selectDb('do20')->selectCollection('userData');

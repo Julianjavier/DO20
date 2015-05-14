@@ -6,8 +6,8 @@ $id = ($_GET['id']);
 
 
 $key = true;
-echo "THIS IS BEFORE THE IF";
-if ($key === true) {
+// echo "THIS IS BEFORE THE IF";
+// if ($key == true) {
 	// $mongo = new MongoClient("mongodb://${Bodark216}:${Durandal216}@localhost");
 	echo "MONGO CLIENT";
 	// $cursor = $mongo ->selectDb('do20')->selectCollection('userData');
@@ -31,9 +31,9 @@ if ($key === true) {
 	// 	$data = $cursor->find($filter);
 	// 	$id = $data->_id;
 	// 	echo "[".json_encode(iterator_to_array($data))."]";	
-	}else{
+	// }else{
 		// echo "[".json_encode(iterator_to_array($data))."]";
-	};
+	// };
 
 }
 

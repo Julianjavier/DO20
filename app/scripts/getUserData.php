@@ -6,10 +6,12 @@ $id = ($_GET['id']);
 
 
 $key = true;
-// echo "THIS IS BEFORE THE IF";
-// if ($key == true) {
-	// $mongo = new MongoClient("mongodb://${Bodark216}:${Durandal216}@localhost");
-	echo "MONGO CLIENT";
+
+echo "Before connection";
+if ($key == true) {
+	$mongo = new MongoClient("mongodb://${Bodark216}:${Durandal216}@localhost");
+	echo "after connection";
+
 	// $cursor = $mongo ->selectDb('do20')->selectCollection('userData');
 
 	// $filter = array('firstName' => $firstName);
@@ -32,7 +34,7 @@ $key = true;
 	// 	$id = $data->_id;
 	// 	echo "[".json_encode(iterator_to_array($data))."]";	
 	// }else{
-		// echo "[".json_encode(iterator_to_array($data))."]";
+	// 	echo "[".json_encode(iterator_to_array($data))."]";
 	// };
 
 }

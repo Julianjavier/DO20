@@ -9,7 +9,7 @@ $key = true;
 
 echo "Before connection";
 if ($key == true) {
-	$mongo = new MongoClient("mongodb://${Bodark216}:${Durandal216}@localhost");
+	$mongo = new MongoClient("mongodb://Bodark216:Durandal216@localhost");
 	echo "after connection";
 
 	// $cursor = $mongo ->selectDb('do20')->selectCollection('userData');

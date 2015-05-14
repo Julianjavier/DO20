@@ -6,7 +6,7 @@ $id = ($_GET['id']);
 
 
 $key = true;
-
+echo "THIS IS BEFORE THE IF";
 if ($key == true) {
 	$mongo = new MongoClient("mongodb://${Bodark216}:${Durandal216}@localhost");
 	echo "MONGO CLIENT";

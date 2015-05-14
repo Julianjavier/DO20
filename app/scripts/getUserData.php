@@ -9,6 +9,7 @@ $key = true;
 
 echo "Before connection";
 if ($key == true) {
+	echo "after IF";
 	$mongo = new MongoClient("mongodb://Bodark216:Durandal216@localhost");
 	echo "after connection";
 

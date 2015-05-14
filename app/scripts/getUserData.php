@@ -7,11 +7,11 @@ $id = ($_GET['id']);
 
 $key = true;
 
-echo "Before connection";
+echo "Before connection ";
 if ($key == true) {
 	echo " after IF";
 	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost");
-	echo "after connection";
+	echo "after connection ". $mongo;
 
 	// $cursor = $mongo ->selectDb('do20')->selectCollection('userData');
 

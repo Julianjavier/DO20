@@ -7,7 +7,6 @@ $id = ($_GET['id']);
 
 $key = true;
 
-echo "Before connection ";
 if ($key == true) {
 	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
 
@@ -30,13 +29,15 @@ if ($key == true) {
 			)
 		);	
 
-        foreach($data as $result){
+		$query = $cursor->find($filter);
+        foreach($query as $result){
             $result['firstName'];
             $result['score'];
             $result['tasks'];
             $obj = array('firstName' => $result['firstName'] , 'score' => $result['score'], 'tasks' => $result['tasks']);
             echo json_encode($obj);
 		};	
+	
 	}else{
         foreach($data as $result){
             $result['firstName'];

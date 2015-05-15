@@ -6,13 +6,10 @@ $id = ($_GET['id']);
 
 
 $key = true;
-$output = array();
 
 echo "Before connection ";
 if ($key == true) {
-	echo "after IF ";
 	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-	echo "after connection ";
 
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');
 	$filter = array('firstName' => $firstName);
@@ -27,13 +24,19 @@ if ($key == true) {
 			"firstName" => $firstName,
 			"lastName" => $lastName,
 			"id" => $id,
-			"score"=> intval(0),
-			"tasks" => intval(0),
+			"score"=> 0,
+			"tasks" => 0,
 			"mileList" => array()
 			)
 		);	
 
-		echo "[".json_encode(iterator_to_array($output))."]";	
+        foreach($data as $result){
+            $result['firstName'];
+            $result['score'];
+            $result['tasks'];
+            $obj = array('firstName' => $result['firstName'] , 'score' => $result['score'], 'tasks' => $result['tasks']);
+            echo json_encode($obj);
+		};	
 	}else{
         foreach($data as $result){
             $result['firstName'];
@@ -41,7 +44,7 @@ if ($key == true) {
             $result['tasks'];
             $obj = array('firstName' => $result['firstName'] , 'score' => $result['score'], 'tasks' => $result['tasks']);
             echo json_encode($obj);
-        };
+		};
 	};
 
 }

@@ -15,8 +15,14 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	        .success(function(mongoData){
 	        	console.log(mongoData);
 	        	$scope.ID = authData.uid;
+	        	
+	        	$scope.firstName = mongoData.firstName;
+	        	$scope.lastName = mongoData.lastName;
+	        	$scope.score = mongoData.score;
+	        	$scope.tasks = mongoData.tasks;
+
+	        	
 	        	$scope.img = facebookObject.picture.data.url
-	        	console.log($scope.img);
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ',mongoData); 
@@ -28,6 +34,10 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name)
 	        .success(function(mongoData){
 	        	console.log(mongoData);
+	        	
+	        	$scope.firstName = mongoData.firstName;
+	        	$scope.lastName = mongoData.lastName;
+	        	
 	        	$scope.img = googleObject.picture;	
 		    })
 		    .error(function(mongoData){ 

@@ -1,15 +1,15 @@
 <header>
 	<div class="avatar" ng-if="AuthData !== null">
-		<img src="{{img}}">
+		<a href="/#/mileList"><img src="{{img}}"></a>
 	</div>
 
 	<button class="login" ng-click="openForm()" ng-if="AuthData == null">
 		<img src="img/login.png">
 	</button>
 
-	<div class="score" ng-if="AuthData !== null">
-		<h1>20</h1>
+	<div class="tasks" ng-if="AuthData !== null">
+		<h1>{{tasks}}</h1>
 	</div>
 
-	<img class="logo" src="img/logo.png">
+	<a href="/#/"><img class="logo" src="img/logo.png"></a>
 </header>

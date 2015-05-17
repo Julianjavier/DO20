@@ -8,10 +8,12 @@ $id = ($_GET['id']);
 $key = true;
 
 if ($key == true) {
-	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+	// $mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+	$mongo = new Mongo();
+
 
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');
-	$filter = array('firstName' => $firstName);
+	$filter = array('firstName' => $firstName , 'lastName' => $lastName);
 
 	$data = $cursor->find($filter);
 	
@@ -32,18 +34,20 @@ if ($key == true) {
 		$query = $cursor->find($filter);
         foreach($query as $result){
             $result['firstName'];
+            $result['lastName'];
             $result['score'];
             $result['tasks'];
-            $obj = array('firstName' => $result['firstName'] , 'score' => $result['score'], 'tasks' => $result['tasks']);
+            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'score' => $result['score'], 'tasks' => $result['tasks']);
             echo json_encode($obj);
 		};	
 	
 	}else{
         foreach($data as $result){
             $result['firstName'];
+            $result['lastName'];
             $result['score'];
             $result['tasks'];
-            $obj = array('firstName' => $result['firstName'] , 'score' => $result['score'], 'tasks' => $result['tasks']);
+            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'score' => $result['score'], 'tasks' => $result['tasks']);
             echo json_encode($obj);
 		};
 	};

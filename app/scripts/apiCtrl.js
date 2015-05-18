@@ -62,19 +62,19 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			//this two if statments will check for either facebook or google auth. 
 			if (authData.provider = "facebook") {
 				var facebookObject = authData.facebook.cachedUserProfile;
-				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?id='+authData.uid+'&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&points='+score
+				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&points='+score+'&provider='+authData.provider
 				}).success(function(data){
 					$scope.stat = true;
-					console.log('We got ', $scope.stat);
+					console.log(data);
 				}).error(function(data){
 					console.log()
 				});	
 			
 			}else if (authData.provider = "google") {
-				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?id='+authData.uid+'&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&points='+score
+				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&points='+score+'&provider='+authData.provider
 				}).success(function(data){
 					$scope.stat = true;
-					console.log('We got ', $scope.stat);
+					console.log(data);
 				}).error(function(data){
 					console.log()
 				});	

@@ -20,7 +20,7 @@
 			<h3 ng-if="status == true" id="open" >Open</h3>
 			<h3 ng-if="status == false" id="closed" >Closed</h3>
 			<ul>
-				<li ng-repeat="times in placeData.opening_hours.weekday_text track by $index">{{times}}</li>
+				<li ng-repeat="times in placeData.opening_hours.weekday_text track by $index">- {{times}}</li>
 			</ul>
 			
 			<div ng-hide="stat">
@@ -45,7 +45,7 @@
 			<h3>{{foodData[0].rating}}</h3>
 			<h3>Ingredients:</h3>
 			<ul>
-				<li ng-repeat="ingredients in foodData[0].ingredientLines track by $index">{{ingredients}}</li>
+				<li ng-repeat="ingredients in foodData[0].ingredientLines track by $index">- {{ingredients}}</li>
 			</ul>
 			<p><strong>{{foodData[0].yield}}</strong></p>
 			<p><strong>Total Time:</strong> {{foodData[0].totalTime}}</p>

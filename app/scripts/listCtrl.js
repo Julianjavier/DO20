@@ -21,6 +21,10 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
     	if(authData.provider == "facebook"){
 	    	//This will check user information on our mongo database.
 	    	var facebookObject = authData.facebook.cachedUserProfile;
+		    $scope.userName = facebookObject.first_name;
+			$scope.lastName = facebookObject.last_name;
+			$scope.provider = authData.provider;	    	
+
 	    	$http.get('../scripts/getMileList.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	$scope.list = mongoData.list;
@@ -33,6 +37,10 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
     	}else if(authData.provider == "google"){
 	    	//This will check user information on our mongo database.
 	    	var googleObject = authData.google.cachedUserProfile;	    	
+		    $scope.userName = googleObject.given_name;
+			$scope.lastName = googleObject.family_name;
+			$scope.provider = authData.provider;
+
 		    $http.get('../scripts/getMileList.php?firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	$scope.list = mongoData.list;
@@ -49,7 +57,7 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 		    var category = $scope.defaultVar.value;
 			var task = $scope.toDo.task;
 			
-			$http.get('../scripts/mongoMileList.php?firstName=Julian&lastName=Rodriguez&provider=facebook&category='+category+'&task='+task)
+			$http.get('../scripts/mongoMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider+'&category='+category+'&task='+task)
 		        .success(function(mongoData){
 
 			    })
@@ -60,6 +68,9 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 	 
 	  } else {
 	  	$rootScope.AuthData = authData;
+		$scope.userName = null;
+		$scope.lastName = null;
+		$scope.provider = null;	    
 	    console.log("Logged out", authData);
 	  }
 	});

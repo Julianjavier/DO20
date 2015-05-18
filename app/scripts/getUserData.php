@@ -7,8 +7,8 @@ $provider = ($_GET['provider']);
 $key = true;
 
 if ($key == true) {
-	// $mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-	$mongo = new Mongo();
+	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+	// $mongo = new Mongo();
 
 
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');

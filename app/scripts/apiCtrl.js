@@ -28,7 +28,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	        	$scope.longitude = apiData.geometry.location.lng;  
 	        	}else{
 	        		console.log("we got nothing");
-	        		// $location.path('/')
+	        		$location.path('/')
 	        	};	
 		    })
 		    .error(function(apiData){ 
@@ -45,7 +45,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 				$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
 				}else{
 	        		console.log("we got nothing");
-	        		// $location.path('/')
+	        		$location.path('/')
 	        	};
 			})
 			.error(function(apiData){

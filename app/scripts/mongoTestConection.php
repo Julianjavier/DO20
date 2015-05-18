@@ -10,7 +10,7 @@ $filter = array('firstName' => $firstName , 'lastName' => $lastName);
 
 $data = $rawData->update( $filter,
 	array(
-		'$inc' => array("score"=> intval($points))
+		'$inc' => array("score"=> intval($points), "tasks" => 1)
 		)
 	);
 

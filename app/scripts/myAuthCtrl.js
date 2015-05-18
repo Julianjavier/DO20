@@ -11,7 +11,7 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
     	if(authData.provider == "facebook"){
 	    	//This will check user information on our mongo database.
 	    	var facebookObject = authData.facebook.cachedUserProfile;
-	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name)
+	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	console.log(mongoData);
 	        	$scope.ID = authData.uid;
@@ -22,7 +22,7 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	        	$scope.tasks = mongoData.tasks;
 
 	        	
-	        	$scope.img = facebookObject.picture.data.url
+	        	$scope.img = facebookObject.picture.data.url;
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ',mongoData); 
@@ -31,12 +31,14 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
     	}else if(authData.provider == "google"){
 	    	//This will check user information on our mongo database.
 	    	var googleObject = authData.google.cachedUserProfile;
-	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name)
+	    	$http.get('../scripts/getUserData.php?id='+authData.uid+'&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	console.log(mongoData);
 	        	
 	        	$scope.firstName = mongoData.firstName;
 	        	$scope.lastName = mongoData.lastName;
+	        	$scope.score = mongoData.score;
+	        	$scope.tasks = mongoData.tasks;
 	        	
 	        	$scope.img = googleObject.picture;	
 		    })

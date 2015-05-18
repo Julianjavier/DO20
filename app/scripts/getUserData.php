@@ -1,8 +1,7 @@
 <?
 $firstName = ($_GET['firstName']); 
 $lastName = ($_GET['lastName']);
-
-$id = ($_GET['id']);
+$provider = ($_GET['provider']);
 
 
 $key = true;
@@ -13,7 +12,7 @@ if ($key == true) {
 
 
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');
-	$filter = array('firstName' => $firstName , 'lastName' => $lastName);
+	$filter = array('firstName' => $firstName , 'lastName' => $lastName, 'provider' => $provider);
 
 	$data = $cursor->find($filter);
 	
@@ -24,7 +23,7 @@ if ($key == true) {
 		array(
 			"firstName" => $firstName,
 			"lastName" => $lastName,
-			"id" => $id,
+			"provider" => $provider,
 			"score"=> 0,
 			"tasks" => 0,
 			"mileList" => array()
@@ -35,9 +34,10 @@ if ($key == true) {
         foreach($query as $result){
             $result['firstName'];
             $result['lastName'];
+            $result['provider'];
             $result['score'];
             $result['tasks'];
-            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'score' => $result['score'], 'tasks' => $result['tasks']);
+            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks']);
             echo json_encode($obj);
 		};	
 	
@@ -45,9 +45,10 @@ if ($key == true) {
         foreach($data as $result){
             $result['firstName'];
             $result['lastName'];
+            $result['provider'];
             $result['score'];
             $result['tasks'];
-            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'score' => $result['score'], 'tasks' => $result['tasks']);
+            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks']);
             echo json_encode($obj);
 		};
 	};

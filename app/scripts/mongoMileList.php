@@ -1,13 +1,15 @@
 <?
-$id = ($_GET['id']);
 $firstName = ($_GET['firstName']);
-$lastName = ($_Get['lastName']);
+$lastName = ($_GET['lastName']);
+$provider = ($_GET['provider']);
 $category = ($_GET['category']);
 $task = ($_GET['task']);
-$mongo =  new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-$rawData = $mongo ->selectDb('do20')->selectCollection('testData');
 
-$filter = array('firstName' => $firstName , 'lastName' => $lastName);
+// $mongo =  new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+$mongo = new Mongo();
+$rawData = $mongo ->selectDb('do20')->selectCollection('userData');
+
+$filter = array('firstName' => $firstName , 'lastName' => $lastName, 'provider' => $provider);
 
 $data = $rawData->update( $filter, 
 	array(
@@ -17,5 +19,6 @@ $data = $rawData->update( $filter,
 			)
 		)
 	);
+echo "Response is good";
 
 ?>

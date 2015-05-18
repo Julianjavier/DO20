@@ -132,12 +132,16 @@ form input, form .select-style{
 	background-color:#fff; 
 	width:100%;
 	height:47px;
-	padding:0;
+	padding:0 0 0 10px;
 	margin:0 0 20px 0;
 	border:3px;
 	border-radius:0;
 	border-style:solid;
 	border-color:#A0A0A0;
+}
+
+form input, form select{
+	outline:none;
 }
 
 form button{
@@ -255,7 +259,7 @@ form a img{
 }
 
 
-ul li{
+.results .data ul li{
 	list-style:none;
 }
 
@@ -280,12 +284,14 @@ hr{
 
 #mileList{
 	width:90%;
+	margin:0px auto;
+	margin-bottom:40px;
+	font-size:15px;
 }
 
-#mileList{
-	margin:0px auto;
-	list-style:none;
-	font-size:15px;
+#mileList li{
+	font-size:20px;
+	margin-top:10px;
 }
 /*End result styling*/
 

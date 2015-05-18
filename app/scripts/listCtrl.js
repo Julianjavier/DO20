@@ -1,4 +1,4 @@
-do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http){
+do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  "$location",  function($scope, $firebaseAuth, $rootScope, $modal, $http, $location){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
 
@@ -56,14 +56,23 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 			console.log("list submit fire");
 		    var category = $scope.defaultVar.value;
 			var task = $scope.toDo.task;
-			
-			$http.get('../scripts/mongoMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider+'&category='+category+'&task='+task)
-		        .success(function(mongoData){
-
-			    })
-			    .error(function(mongoData){ 
-			        console.log('NONO ',mongoData); 
-			    });			
+			console.log($scope.userName);
+			if (category !== null && task !== null) {
+				$http.get('../scripts/mongoMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider+'&category='+category+'&task='+task)
+			        .success(function(mongoData){
+						$http.get('../scripts/getMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider)
+				        .success(function(mongoData){
+				        	$scope.list = mongoData.list;
+				        	console.log($scope.list);
+					    })
+					    .error(function(mongoData){ 
+					        console.log('NOPE ', mongoData); 
+					    });					        	
+				    })
+				    .error(function(mongoData){ 
+				        console.log('NONO ',mongoData); 
+				    });
+			};    			
 	   	}    
 	 
 	  } else {

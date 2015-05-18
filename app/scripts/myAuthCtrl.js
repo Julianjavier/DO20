@@ -64,9 +64,9 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 		});
    	}
 
-	// $scope.cancel = function () {
- // 		$modalInstance.dismiss('cancel');
-	// };
+	$scope.cancel = function () {
+ 		$modalInstance.dismiss('cancel');
+	};
 	//this is where the controllos for the modal end
 
 	

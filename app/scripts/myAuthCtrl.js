@@ -20,8 +20,7 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	        	$scope.lastName = mongoData.lastName;
 	        	$scope.score = mongoData.score;
 	        	$scope.tasks = mongoData.tasks;
-
-	        	
+     	
 	        	$scope.img = facebookObject.picture.data.url;
 		    })
 		    .error(function(mongoData){ 
@@ -39,7 +38,7 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	        	$scope.lastName = mongoData.lastName;
 	        	$scope.score = mongoData.score;
 	        	$scope.tasks = mongoData.tasks;
-	        	
+	  
 	        	$scope.img = googleObject.picture;	
 		    })
 		    .error(function(mongoData){ 

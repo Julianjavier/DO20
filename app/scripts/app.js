@@ -16,5 +16,10 @@ do20.config(['$routeProvider', function($routeProvider){
 		templateUrl:'view/mileList.html',
 		controller:'listCtrl'		
 
+	}).when('/login', {
+		
+		templateUrl:'view/loginBnt.html',
+		controller:'myAuthCtrl'		
+
 	});
 }]);

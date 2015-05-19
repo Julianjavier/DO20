@@ -1,4 +1,4 @@
-var do20 = angular.module('do20', ["ngRoute", "firebase", "ngMap", "ui.bootstrap"]);
+var do20 = angular.module('do20', ["ngRoute", "ngTouch", "firebase", "ngMap", "ui.bootstrap"]);
 
 do20.config(['$routeProvider', function($routeProvider){
 	$routeProvider.when('/', {

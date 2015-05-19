@@ -81,7 +81,7 @@ header .avatar img{
 	display:block;
 	border-top: 10px solid #EA5F28;
 	padding-top:60px;
-	padding-bottom:60px;
+	padding-bottom:20px;
 	width:100%;
 }
 
@@ -89,8 +89,8 @@ header .avatar img{
 	display:block;
 	margin:0px auto;
 	margin-bottom:40px;
-	width:50%;
-	height:50px;
+	width:80%;
+	height:60px;
 	color:#fff;
 	text-transform: uppercase;
 	outline:0;

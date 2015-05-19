@@ -17,10 +17,4 @@ do20.config(['$routeProvider', function($routeProvider){
 		controller:'listCtrl'		
 
 	});
-	// .when('/login', {
-		
-	// 	templateUrl:'view/loginBnt.html',
-	// 	controller:'myAuthCtrl'		
-
-	// });
 }]);

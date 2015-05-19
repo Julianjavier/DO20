@@ -3,8 +3,8 @@
 		<a href="/#/mileList"><img src="{{img}}"></a>
 	</div>
 
-	<button class="login" ng-if="AuthData == null">
-		<a href="/#/login"><img src="img/login.png"></a>
+	<button class="login" ng-click="openForm()" ng-if="AuthData == null">
+		<img src="img/login.png">
 	</button>
 
 	<div class="tasks" ng-if="AuthData !== null">

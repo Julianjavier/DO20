@@ -40,7 +40,7 @@ do20.controller('apiDetails', ['$scope', '$rootScope','$http', '$location', '$ro
 	
 	}else if (category == 'cooking') {
 		//This will get information from thr yummly api and will have a finite result.
-		$http.get('../scripts/getYumDetails.php?q='+ id)
+		$http.get('../scripts/getYumDetails.php?id='+id)
 			.success(function(apiData){
 				if (apiData !== null){
 				console.log(apiData);

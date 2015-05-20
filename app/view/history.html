@@ -1,0 +1,11 @@
+<div class="results">
+	<h1>Your History</h1>
+	<hr id="mileRuler"/>
+	<div ng-if="AuthData !== null" id="mileList">
+		<h1>Your Current Goals</h1>
+		<li ng-repeat="item in list track by $index" class="mileItem">{{item.title}} <button ng-click="getDetails(item.id, item.category)">REVISIT</button></li>
+	</div>
+	<div ng-if="AuthData == null" id="mileList">
+		<h1>Please Login to see this content</h1>
+	</div>	
+</div>

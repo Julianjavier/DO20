@@ -1,4 +1,4 @@
-do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http){
+do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http, $modalInstance){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
 
@@ -62,30 +62,6 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 		    controller: 'ModalInstanceCtrl'
 		});
    	}
-
-	$scope.close = function () {
- 		$modalInstance.dismiss('cancel');
-	};
-	//this is where the controllos for the modal end
-
-	
-	$scope.facebookLogin = function(){
-		console.log("we fired facebook!");
-		$scope.authObj.$authWithOAuthPopup("facebook").then(function(authData) {
-		  console.log("Logged in as:", authData.uid);
-		}).catch(function(error) {
-		  console.error("Authentication failed:", error);
-		});
-	};
-
-	$scope.googleLogin = function(){
-		console.log("we fired google!");
-		$scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
-		  console.log("Logged in as:", authData.uid);
-		}).catch(function(error) {
-		  console.error("Authentication failed:", error);
-		});	
-	};
 
 }]);
 

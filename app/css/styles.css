@@ -263,6 +263,10 @@ form a img{
 	list-style:none;
 }
 
+.results .data h2 {
+	text-align:center;
+}
+
 map{
 	width:100%;
 	float:left;

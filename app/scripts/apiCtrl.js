@@ -22,6 +22,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	        .success(function(apiData){
 	        	if (apiData !== null){
 	        	console.log(apiData);
+	        	$scope.task = apiData.name;
+	        	$scope.itemId = apiData.place_id; 	        	
 	        	$scope.placeData = apiData;
 	        	$scope.status = apiData.opening_hours.open_now; 
 	        	$scope.latitude = apiData.geometry.location.lat;
@@ -41,6 +43,9 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			.success(function(apiData){
 				if (apiData !== null){
 				console.log(apiData);
+				$scope.itemId = apiData[0].id;
+				$scope.task = apiData[0].name;
+				console.log($scope.task);
 				$scope.foodData = apiData;
 				$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
 				}else{
@@ -62,7 +67,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			//this two if statments will check for either facebook or google auth. 
 			if (authData.provider = "facebook") {
 				var facebookObject = authData.facebook.cachedUserProfile;
-				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&points='+score+'&provider='+authData.provider
+
+				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&points='+score+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
 				}).success(function(data){
 					$scope.stat = true;
 					console.log(data);
@@ -71,7 +77,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 				});	
 			
 			}else if (authData.provider = "google") {
-				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&points='+score+'&provider='+authData.provider
+				$http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&points='+score+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
 				}).success(function(data){
 					$scope.stat = true;
 					console.log(data);
@@ -87,7 +93,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	};
 
 	$scope.reroll = function(){
-		if (category == 'restaurant' || category == 'entertainment') {
+		if (category == 'restaurant' || category == 'establishment') {
 			//this will call for the google places api, with already a filtered result.
 			$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query)
 		        .success(function(apiData){

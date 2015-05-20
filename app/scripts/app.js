@@ -16,5 +16,15 @@ do20.config(['$routeProvider', function($routeProvider){
 		templateUrl:'view/mileList.html',
 		controller:'listCtrl'		
 
+	}).when('/history', {
+		
+		templateUrl:'view/history.html',
+		controller:'historyCtrl'		
+
+	}).when('/details/:category/:id',{
+		
+		templateUrl:'view/view.html',
+		controller:'apiDetails'
+	
 	});
 }]);

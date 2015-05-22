@@ -14,4 +14,7 @@
 	$full_details = $data->{'result'};
 
 	echo json_encode($full_details);
+
+	// close curl resource to free up system resources 
+    curl_close($ch);
 ?>

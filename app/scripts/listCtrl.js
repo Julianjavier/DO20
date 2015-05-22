@@ -28,7 +28,10 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 	    	$http.get('../scripts/getMileList.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	$scope.list = mongoData.list;
+	        	$scope.userHistory = mongoData["history"];	        	
+	        	console.log(mongoData);
 	        	console.log($scope.list);
+	        	console.log($scope.userHistory);
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ', mongoData); 
@@ -44,7 +47,10 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 		    $http.get('../scripts/getMileList.php?firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	$scope.list = mongoData.list;
+	        	$scope.userHistory = mongoData.history;
+	        	console.log(mongoData);
 	        	console.log($scope.list);
+	        	console.log($scope.userHistory);
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ', mongoData); 
@@ -73,7 +79,7 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 				        console.log('NONO ',mongoData); 
 				    });
 			};    			
-	   	}    
+	   	} 	   	    
 	 
 	  } else {
 	  	$rootScope.AuthData = authData;

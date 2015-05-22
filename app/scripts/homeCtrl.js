@@ -16,7 +16,9 @@ do20.controller('homeCtrl', ['$scope', '$rootScope', '$location', '$firebaseAuth
 		var category = $scope.defaultVar.value;
 		var query = $scope.toDo.keyword;
 		console.log('We fired');
-		$location.path('/dataResults/'+category+'/'+query);	  
+		if (category == "establishment", category == "restaurant", category == "cooking") {
+			$location.path('/dataResults/'+category+'/'+query);	  	
+		};
 	};
 
 

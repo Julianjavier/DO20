@@ -56,6 +56,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			.error(function(apiData){
 				console.log('NONO ',apiData);
 			});
+	}else{
+		$location.path('/')
 	};
 
 	$scope.confirm = function(){

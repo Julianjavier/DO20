@@ -11,7 +11,7 @@ do20.config(['$routeProvider', function($routeProvider){
 		templateUrl:'view/view.html',
 		controller:'apiCtrl'
 	
-	}).when('/mileList', {
+	}).when('/userProfile', {
 		
 		templateUrl:'view/mileList.html',
 		controller:'listCtrl'		

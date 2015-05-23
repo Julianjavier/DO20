@@ -1,13 +1,15 @@
 <?php
 	$cat = ($_GET['category']); 
 	$keyWord = ($_GET['keyWord']);
+	$lat = ($_GET["lat"]);
+	$lon = ($_GET["lon"]);
 	$urlSafeQuery = urlencode($keyWord);
 
    	//This is the start of the api call.
     // create curl resource 
     $ch = curl_init(); 
     // set url 
-    curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.5939260,-81.2941990&radius=50000&types=".$cat."&keyword=".$urlSafeQuery."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4"); 
+    curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=".$lat.",".$lon."&radius=50000&types=".$cat."&keyword=".$urlSafeQuery."&key=AIzaSyA8ovrfj9jOPliuv-tBX9Z9pZgO9s2Cnq4"); 
     //return the transfer as a string 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
     // $output contains the output string 

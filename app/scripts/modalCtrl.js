@@ -13,7 +13,7 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$modal", "$firebaseAuth", "$mod
 
   $scope.facebookLogin = function(){
     console.log("we fired facebook!");
-    $scope.authObj.$authWithOAuthPopup("facebook").then(function(authData) {
+    $scope.authObj.$authWithOAuthRedirect("facebook").then(function(authData) {
       console.log("Logged in as:", authData.uid);
       $modalInstance.dismiss('cancel');    
     }).catch(function(error) {
@@ -23,7 +23,7 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$modal", "$firebaseAuth", "$mod
 
   $scope.googleLogin = function(){
     console.log("we fired google!");
-    $scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
+    $scope.authObj.$authWithOAuthRedirect("google").then(function(authData) {
       console.log("Logged in as:", authData.uid);
       $modalInstance.dismiss('cancel');
     }).catch(function(error) {

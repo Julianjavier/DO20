@@ -1,4 +1,4 @@
-do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$routeParams','$firebaseAuth', '$location', function($scope, $rootScope, $http, $location, $routeParams, $firebaseAuth, $location){
+do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$routeParams','$firebaseAuth', '$location', '$window', function($scope, $rootScope, $http, $location, $routeParams, $firebaseAuth, $location, $window){
 	//will fire once the submit button from the form to determine wich api to call
 	
 	//These are the set up for the firebase connection
@@ -32,12 +32,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 		  		// do_something(position.coords.latitude, position.coords.longitude);
 		  		var lat = position.coords.latitude;
 		  		var lon = position.coords.longitude;
-		  		console.log($rootScope.lat);
-		  		console.log($rootScope.lon);
 
 		  		if (lat && lon) {
-			  	console.log(lat);
-			  	console.log(lon);
 			  	//this will call for the google places api, with already a filtered result.
 				$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query +"&lat="+ lat + "&lon="+ lon)
 			        .success(function(apiData){
@@ -49,6 +45,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			        	$scope.status = apiData.opening_hours.open_now; 
 			        	$scope.latitude = apiData.geometry.location.lat;
 			        	$scope.longitude = apiData.geometry.location.lng;  
+			        	$scope.originalSource = "https://www.google.com/maps/place/"+$scope.placeData.formatted_address;
 			        	}else{
 			        		console.log("we got nothing");
 			        		$location.path('/')
@@ -74,6 +71,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 				console.log($scope.task);
 				$scope.foodData = apiData;
 				$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
+				$scope.originalSource = $scope.foodData[0].source.sourceRecipeUrl;
 				}else{
 	        		console.log("we got nothing");
 	        		$location.path('/')
@@ -87,6 +85,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	};
 
 	$scope.confirm = function(){
+		console.log($scope.originalSource);
+		$window.open(encodeURI($scope.originalSource) , '_blank');		
 		console.log('confirm fired');
 
 	    $scope.authObj.$onAuth(function(authData) {

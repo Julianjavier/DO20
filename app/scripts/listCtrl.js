@@ -3,11 +3,10 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
     $scope.authObj = $firebaseAuth(ref);
 
     $scope.category = [
-	    { name: 'I feel like doing...', value: 'null' }, 
-	    { name: 'I want to go out.', value: 'establishment' }, 
-	    { name: 'I want to go Eat.', value: 'restaurant' },
-	    { name: 'I want to cook.', value: 'cooking' },
-	    { name: 'I want to see a movie.', value: 'movie' }
+	    { name: 'Now choose...', value: 'null' }, 
+	    { name: 'Something new to do.', value: 'establishment' }, 
+	    { name: 'Somewhere new to eat.', value: 'restaurant' },
+	    { name: 'Something new to cook.', value: 'cooking' },
 	];
 
 	$scope.defaultVar = $scope.category[0];	

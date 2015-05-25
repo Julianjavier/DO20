@@ -315,4 +315,9 @@ footer div{
 	margin-top:7px;
 	font-size:25px;
 	text-align:center;
+	color:#fff;
+}
+
+footer div a{
+	color:#EA5F28;
 }

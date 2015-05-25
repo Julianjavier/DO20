@@ -1,11 +1,10 @@
 <div class="results">
 	<form ng-submit="listItemSubmit()">
 		<div>
+			<input type="text" ng-model="toDo.task" name="keyword" placeholder="Think of something special...">
 			<div class="select-style">
-				<select type="text" ng-model="defaultVar" name="category" ng-options="option.name for option in category">
-				</select>
+				<select type="text" ng-model="defaultVar" name="category" ng-options="option.name for option in category"></select>
 			</div>
-			<input type="text" ng-model="toDo.task" name="keyword" placeholder="Keyword">
 			<button id="mileSubmit" name="submit">SUBMIT</button>
 		</div>
 	</form>

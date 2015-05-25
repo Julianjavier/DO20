@@ -22,6 +22,10 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	        	$scope.tasks = mongoData.tasks;
      	
 	        	$scope.img = facebookObject.picture.data.url;
+
+	        	if($scope.tasks >= 20) {
+	        		
+	        	};
 		    })
 		    .error(function(mongoData){ 
 		        console.log('NOPE ',mongoData); 

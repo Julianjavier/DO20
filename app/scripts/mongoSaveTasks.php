@@ -21,6 +21,5 @@ $data = $rawData->update( $filter,
 			)
 		)
 	);
-echo "Response is good";
 
 ?>

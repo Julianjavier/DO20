@@ -44,6 +44,16 @@ if ($key == true) {
 		};	
 	
 	}else{
+		foreach($data as $result){
+			if ( $result['tasks'] >= 20){
+				$data = $rawData->update( $filter, 
+						array(
+							'$set' => array("tasks" => 20)
+						)
+				);	
+			};
+		};
+        
         foreach($data as $result){
             $result['firstName'];
             $result['lastName'];

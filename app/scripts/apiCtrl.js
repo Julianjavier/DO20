@@ -18,15 +18,14 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 
 	//Thsi will hold the longitude and latitude for the location api
     navigator.geolocation.getCurrentPosition(function(position) {
-  		// do_something(position.coords.latitude, position.coords.longitude);
-  		$rootScope.lat = position.coords.latitude;
-  		$rootScope.lon = position.coords.longitude;
+  		$scope.lat = position.coords.latitude;
+  		$scope.lon = position.coords.longitude;
   		console.log($rootScope.lat);
   		console.log($rootScope.lon);
 	});	
 	
 	if (category == 'restaurant' || category == 'establishment') {
-		if ($rootScope.lat == "" || $rootScope.lon == null) {
+		if ($scope.lat == "" || $scope.lon == null) {
 			//Thsi will hold the longitude and latitude for the location api
 		    navigator.geolocation.getCurrentPosition(function(position) {
 		  		// do_something(position.coords.latitude, position.coords.longitude);

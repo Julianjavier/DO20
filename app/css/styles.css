@@ -109,6 +109,17 @@ header .avatar img{
 .loginModel #twitter{
 	background-color:#4099FF;
 }
+
+.mileEvent{
+	margin:0px auto;
+	width:90%;
+}
+
+.mileEvent h1{
+	color:#EA5F28;
+	text-align:center;
+	font-size:1.9em;
+}
 /*end modal styling*/
 
 /*This is where form styling will be done*/

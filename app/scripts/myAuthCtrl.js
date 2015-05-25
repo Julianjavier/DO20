@@ -1,6 +1,7 @@
-do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  function($scope, $firebaseAuth, $rootScope, $modal, $http, $modalInstance){
+do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal", "$http",  function($scope, $rootScope, $firebaseAuth, $modal, $http, $modalInstance){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
+     // $rootScope.session == true;  
 
     $scope.authObj.$onAuth(function(authData) {
 	  if(authData){
@@ -23,8 +24,17 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
      	
 	        	$scope.img = facebookObject.picture.data.url;
 
+	        	// && $rootScope.session == true
 	        	if($scope.tasks >= 20) {
-	        		
+	        		console.log($rootScope.session);
+	        		console.log("SUDO SESSION HAS BEEN CONFIRMED");
+		
+					var modalInstance = $modal.open({
+					    animation: true,
+					    templateUrl: 'view/mileEvent.html',
+					    controller: 'MileListEvnet'
+					});	        		
+
 	        	};
 		    })
 		    .error(function(mongoData){ 
@@ -54,18 +64,20 @@ do20.controller("myAuthCtrl", ["$scope", "$firebaseAuth", "$rootScope", "$modal"
 	  } else {
 	  	$rootScope.AuthData = authData;
 	    console.log("Logged out", authData);
+	    // $rootScope.session === false;
 	  }
 	});
 
 	//This will hold the instance for the login modal window.
 	$scope.openForm = function () {
 		console.log("Open Fire")
+		// $rootScope.session == false;
+		console.log($rootScope.session);
 		var modalInstance = $modal.open({
 		    animation: true,
 		    templateUrl: 'view/loginModle.html',
 		    controller: 'ModalInstanceCtrl'
 		});
    	}
-
 }]);
 

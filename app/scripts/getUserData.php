@@ -44,9 +44,10 @@ if ($key == true) {
 		};	
 	
 	}else{
-		foreach($data as $result){
+		$dataCleaner = $cursor->find($filter);
+		foreach($dataCleaner as $result){
 			if ( $result['tasks'] >= 20){
-				$data = $rawData->update( $filter, 
+				$dataCleaner = $cursor->update( $filter, 
 						array(
 							'$set' => array("tasks" => 20)
 						)

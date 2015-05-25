@@ -12,7 +12,7 @@ $filter = array('firstName' => $firstName , 'lastName' => $lastName, 'provider' 
 $data = $cursor->find($filter);
 
 foreach ($data as $userData) {
-    $obj = array('list' => $userData['mileList'], 'history' => $userData['savedItems']);
+    $obj = array('list' => $userData['mileList'], 'history' => $userData['savedResults']);
     echo json_encode($obj);
 };
 

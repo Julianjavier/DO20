@@ -1,4 +1,4 @@
-do20.controller("ModalInstanceCtrl", ["$scope", "$modal", "$firebaseAuth", "$modalInstance",  function($scope, $modal, $firebaseAuth, $modalInstance){
+do20.controller("ModalInstanceCtrl", ["$scope", "$rootScope", "$modal", "$firebaseAuth", "$modalInstance",  function($scope, $rootScope, $modal, $firebaseAuth, $modalInstance){
   var ref = new Firebase("https://do20.firebaseio.com");
   $scope.authObj = $firebaseAuth(ref);
 
@@ -12,11 +12,12 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$modal", "$firebaseAuth", "$mod
   };
 
   $scope.facebookLogin = function(){
-    console.log("we fired facebook!");
+    console.log("we fired facebook!"); 
     $scope.authObj.$authWithOAuthRedirect("facebook").then(function(authData) {
       console.log("Logged in as:", authData.uid);
-      $modalInstance.dismiss('cancel');    
+      $modalInstance.dismiss('cancel'); 
     }).catch(function(error) {
+      $rootScope.session = false; 
       console.error("Authentication failed:", error);
     });
   };
@@ -27,6 +28,7 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$modal", "$firebaseAuth", "$mod
       console.log("Logged in as:", authData.uid);
       $modalInstance.dismiss('cancel');
     }).catch(function(error) {
+      $rootScope.session = false;       
       console.error("Authentication failed:", error);
     }); 
   };

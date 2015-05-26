@@ -84,7 +84,6 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	};
 
 	$scope.confirm = function(){
-		console.log($scope.originalSource);
 		$window.open(encodeURI($scope.originalSource) , '_blank');		
 		console.log('confirm fired');
 

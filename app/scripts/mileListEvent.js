@@ -63,9 +63,45 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
     var category = $scope.defaultVar.value;
     var query = $scope.toDo.keyword;
     console.log('We fired');
-    if (category == "establishment" || category == "restaurant" || category == "cooking") {
-      $location.path('/dataResults/'+category+'/'+query);     
-    };
+
+    $scope.authObj.$onAuth(function(authData) {
+      if (authData) {
+      console.log(authData);
+      //this two if statments will check for either facebook or google auth. 
+      if (authData.provider = "facebook") {
+        var facebookObject = authData.facebook.cachedUserProfile;
+
+        $http({ method: 'POST', url: '../scripts/resetTasksValues.php?&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&points='+score+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
+        }).success(function(data){
+          $scope.stat = true;
+          console.log(data);
+          if (category == "establishment" || category == "restaurant" || category == "cooking") {
+            $location.path('/dataResults/'+category+'/'+query);     
+          }; 
+
+        }).error(function(data){
+          console.log()
+        }); 
+      
+      }else if (authData.provider = "google") {
+        $http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&points='+score+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
+        }).success(function(data){
+          $scope.stat = true;
+          console.log(data);
+          if (category == "establishment" || category == "restaurant" || category == "cooking") {
+            $location.path('/dataResults/'+category+'/'+query);     
+          };          
+        
+        }).error(function(data){
+          console.log()
+        }); 
+      };      
+        //
+      } else {
+        console.log("Logged out");
+      }
+    });
+
   };  
 
   $scope.cancel = function () {

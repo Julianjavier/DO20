@@ -39,7 +39,8 @@ if ($key == true) {
             $result['provider'];
             $result['score'];
             $result['tasks'];
-            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks']);
+            $result['mileList'];
+            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks'], 'mileList' => $result['mileList']);
             echo json_encode($obj);
 		};	
 	
@@ -61,7 +62,8 @@ if ($key == true) {
             $result['provider'];
             $result['score'];
             $result['tasks'];
-            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks']);
+            $result['mileList'];
+            $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks'], 'mileList' => $result['mileList']);
             echo json_encode($obj);
 		};
 	};

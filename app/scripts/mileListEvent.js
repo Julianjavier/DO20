@@ -17,10 +17,11 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
         var facebookObject = authData.facebook.cachedUserProfile;
         $http.get('../scripts/getMileList.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
           .success(function(mongoData){
-            console.log(mongoData);
-            // $scope.ID = authData.uid;
+            console.log(mongoData);            
+            $scope.firstName = mongoData.firstName;
+            $scope.mileList = mongoData.mileList;
             
-            // $scope.firstName = mongoData.firstName;
+            $scope.randResult = myArray[Math.floor(Math.random() * $scope.mileList.length)];
             // $scope.lastName = mongoData.lastName;
             // $scope.score = mongoData.score;
             // $scope.tasks = mongoData.tasks;

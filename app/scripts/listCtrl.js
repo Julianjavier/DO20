@@ -60,10 +60,10 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 		$scope.listItemSubmit = function () {
 			console.log("list submit fire");
 		    var category = $scope.defaultVar.value;
+			var title = $scope.defaultVar.name;		    
 			var task = $scope.toDo.task;
-			console.log($scope.userName);
 			if (category !== null && task !== null) {
-				$http.get('../scripts/mongoMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider+'&category='+category+'&task='+task)
+				$http.get('../scripts/mongoMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider+'&category='+category+'&task='+task+'&title='+title)
 			        .success(function(mongoData){
 						$http.get('../scripts/getMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider)
 				        .success(function(mongoData){

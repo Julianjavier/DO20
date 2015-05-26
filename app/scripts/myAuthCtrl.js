@@ -21,11 +21,13 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
 	        	$scope.lastName = mongoData.lastName;
 	        	$scope.score = mongoData.score;
 	        	$scope.tasks = mongoData.tasks;
+	        	$scope.list = mongoData.mileList;
+	        	console.log($scope.list);
      	
 	        	$scope.img = facebookObject.picture.data.url;
 
 	        	// && $rootScope.session == true
-	        	if($scope.tasks >= 20) {
+	        	if($scope.tasks >= 20 && $scope.list.length > 0) {
 	        		console.log($rootScope.session);
 	        		console.log("SUDO SESSION HAS BEEN CONFIRMED");
 		

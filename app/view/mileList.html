@@ -11,7 +11,7 @@
 	<hr id="mileRuler"/>
 	<div ng-if="AuthData !== null" id="mileList">
 		<h1>Your Current Goals</h1>
-		<li ng-repeat="item in list track by $index" class="mileItem">{{item.category}}: {{item.task}}</li>
+		<li ng-repeat="item in list track by $index" class="mileItem">{{item.title}}: <br/>{{item.task}}</li>
 	</div>
 	<div ng-if="AuthData == null" id="mileList">
 		<h1>Please Login to see this content</h1>

@@ -1,8 +1,13 @@
-<div class="loginModel">
+<div class="eventModal">
 	<div class="mileEvent">
 		<h1>CONGRATULATIONS!</h1>
+		<h1>{{firstName}}</h1>
+		<div>YOU HAVE REACHED MILESTONE EVENT</div>
 		<hr>
-		<button ng-click="confirm()">LET'S GO</button>
-		<button ng-click="cancel()">Cancel</button>
+		<h2>Your chosen milestone is:</h2>
+		<p>{{randResult}}</p>
+		<hr>
+		<button ng-click="confirm()" id="confirm">LET'S GO</button>
+		<button ng-click="cancel()" id="cancel">Cancel</button>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAuth", "$modalInstance", "$http", function($scope, $rootScope, $modal, $firebaseAuth, $modalInstance, $http){
+do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAuth", "$modalInstance", "$http", '$location', function($scope, $rootScope, $modal, $firebaseAuth, $modalInstance, $http, $location){
   var ref = new Firebase("https://do20.firebaseio.com");
   $scope.authObj = $firebaseAuth(ref);
 
@@ -18,15 +18,11 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
         $http.get('../scripts/getMileList.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
           .success(function(mongoData){
             console.log(mongoData);            
-            $scope.firstName = mongoData.firstName;
-            $scope.mileList = mongoData.mileList;
             
-            $scope.randResult = myArray[Math.floor(Math.random() * $scope.mileList.length)];
-            // $scope.lastName = mongoData.lastName;
-            // $scope.score = mongoData.score;
-            // $scope.tasks = mongoData.tasks;
-      
-            // $scope.img = facebookObject.picture.data.url;
+            $scope.firstName = facebookObject.first_name;
+            $scope.mileList = mongoData.list;
+
+            $scope.randResult = $scope.mileList[Math.floor(Math.random() * $scope.mileList.length)];
         })
         .error(function(mongoData){ 
             console.log('NOPE ',mongoData); 
@@ -39,12 +35,10 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
           .success(function(mongoData){
             console.log(mongoData);
             
-            // $scope.firstName = mongoData.firstName;
-            // $scope.lastName = mongoData.lastName;
-            // $scope.score = mongoData.score;
-            // $scope.tasks = mongoData.tasks;
-    
-            // $scope.img = googleObject.picture;  
+            $scope.firstName = googleObject.given_name;
+            $scope.mileList = mongoData.list;
+
+            $scope.randResult = $scope.mileList[Math.floor(Math.random() * $scope.mileList.length)]; 
         })
         .error(function(mongoData){ 
             console.log('NOPE ',mongoData); 
@@ -60,10 +54,11 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
   });
 
   
-  $scope.confirm = function(){
-    var category = $scope.defaultVar.value;
-    var query = $scope.toDo.keyword;
-    console.log('We fired');
+  $scope.confirm = function(category , task){
+    var cat = category;
+    var query = task;
+    console.log(cat);
+    console.log(query);
 
     $scope.authObj.$onAuth(function(authData) {
       if (authData) {
@@ -72,27 +67,27 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
       if (authData.provider = "facebook") {
         var facebookObject = authData.facebook.cachedUserProfile;
 
-        $http({ method: 'POST', url: '../scripts/resetTasksValues.php?&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&points='+score+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
+        $http({ method: 'POST', url: '../scripts/resetTasksValues.php?&firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
         }).success(function(data){
-          $scope.stat = true;
+          // $scope.stat = true;
           console.log(data);
           if (category == "establishment" || category == "restaurant" || category == "cooking") {
             $location.path('/dataResults/'+category+'/'+query);     
           }; 
-
+          $modalInstance.dismiss('cancel');
         }).error(function(data){
           console.log()
         }); 
       
       }else if (authData.provider = "google") {
-        $http({ method: 'POST', url: '../scripts/mongoTestConection.php?&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&points='+score+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
+        $http({ method: 'POST', url: '../scripts/resetTasksValues.php?&firstName='+googleObject.given_name+'&lastName='+googleObject.family_name+'&provider='+authData.provider+'&category='+category+'&title='+$scope.task+'&id='+$scope.itemId
         }).success(function(data){
-          $scope.stat = true;
+          // $scope.stat = true;
           console.log(data);
           if (category == "establishment" || category == "restaurant" || category == "cooking") {
             $location.path('/dataResults/'+category+'/'+query);     
           };          
-        
+          $modalInstance.dismiss('cancel');
         }).error(function(data){
           console.log()
         }); 
@@ -107,7 +102,7 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
 
   $scope.cancel = function () {
     console.log($modalInstance);
-    // $rootScope.session = true;
+    $rootScope.session = false;
     $modalInstance.dismiss('cancel');
   };
 

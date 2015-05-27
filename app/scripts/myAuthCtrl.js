@@ -66,7 +66,7 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
 	  } else {
 	  	$rootScope.AuthData = authData;
 	    console.log("Logged out", authData);
-	    // $rootScope.session === false;
+	    $rootScope.session = false;
 	  }
 	});
 

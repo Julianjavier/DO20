@@ -25,6 +25,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	});	
 	
 	if (category == 'restaurant' || category == 'establishment') {
+		scroll(0,0);
 		if ($scope.lat == "" || $scope.lon == null) {
 			//Thsi will hold the longitude and latitude for the location api
 		    navigator.geolocation.getCurrentPosition(function(position) {
@@ -41,7 +42,12 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			        	$scope.task = apiData.name;
 			        	$scope.itemId = apiData.place_id; 	        	
 			        	$scope.placeData = apiData;
-			        	$scope.status = apiData.opening_hours.open_now; 
+			        	if ($scope.placeData.rating){
+			        		$scope.rating = $scope.placeData.rating;
+			        	};
+			        	if(apiData.opening_hours){
+			        		$scope.status = apiData.opening_hours.open_now; 
+			        	};
 			        	$scope.latitude = apiData.geometry.location.lat;
 			        	$scope.longitude = apiData.geometry.location.lng;  
 			        	$scope.originalSource = "https://www.google.com/maps/place/"+$scope.placeData.formatted_address;
@@ -120,21 +126,41 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 
 	$scope.reroll = function(){
 		if (category == 'restaurant' || category == 'establishment') {
-			//this will call for the google places api, with already a filtered result.
-			$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query)
-		        .success(function(apiData){
-		        	console.log(apiData);
-		        	$scope.placeData = apiData; 
-		        	$scope.latitude = apiData.geometry.location.lat;
-		        	$scope.longitude = apiData.geometry.location.lng;
-		        	console.log($scope.latitude); 
-		        	console.log($scope.longitude);    	
-			    })
-			    .error(function(apiData){ 
-			        console.log('NONO ',apiData); 
-			    });
+			scroll(0,0);
+			//Thsi will hold the longitude and latitude for the location api
+		    navigator.geolocation.getCurrentPosition(function(position) {
+		  		// do_something(position.coords.latitude, position.coords.longitude);
+		  		var lat = position.coords.latitude;
+		  		var lon = position.coords.longitude;
+
+		  		if (lat && lon) {
+			  	//this will call for the google places api, with already a filtered result.
+				$http.get('../scripts/getLocation.php?category='+ category +'&keyWord='+ query +"&lat="+ lat + "&lon="+ lon)
+			        .success(function(apiData){
+			        	if (apiData !== null){
+			        	console.log(apiData);
+			        	$scope.task = apiData.name;
+			        	$scope.itemId = apiData.place_id; 	        	
+			        	$scope.placeData = apiData;
+			        	if(apiData.opening_hours){
+			        		$scope.status = apiData.opening_hours.open_now; 
+			        	};
+			        	$scope.latitude = apiData.geometry.location.lat;
+			        	$scope.longitude = apiData.geometry.location.lng;  
+			        	$scope.originalSource = "https://www.google.com/maps/place/"+$scope.placeData.formatted_address;
+			        	}else{
+			        		console.log("we got nothing");
+			        		$location.path('/')
+			        	};	
+				    })
+				    .error(function(apiData){ 
+				        console.log('NONO ',apiData); 
+				    });	
+				};    
+			});	
 		
 		}else if (category == 'cooking') {
+			scroll(0,0);
 			//This will get information from thr yummly api and will have a finite result.
 			$http.get('../scripts/getYum.php?q='+ query)
 				.success(function(apiData){

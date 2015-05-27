@@ -18,8 +18,6 @@ if ($key == true) {
 	$data = $cursor->find($filter);
 	
 	$length = count(iterator_to_array($data));
-	
-
 
 	$dataCleaner = $cursor->update( $filter, 
 			array(

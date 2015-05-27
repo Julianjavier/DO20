@@ -17,12 +17,12 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	console.log(query);
 
 	//Thsi will hold the longitude and latitude for the location api
-    navigator.geolocation.getCurrentPosition(function(position) {
-  		$scope.lat = position.coords.latitude;
-  		$scope.lon = position.coords.longitude;
-  		console.log($rootScope.lat);
-  		console.log($rootScope.lon);
-	});	
+ //    navigator.geolocation.getCurrentPosition(function(position) {
+ //  		$scope.lat = position.coords.latitude;
+ //  		$scope.lon = position.coords.longitude;
+ //  		console.log($rootScope.lat);
+ //  		console.log($rootScope.lon);
+	// });	
 	
 	if (category == 'restaurant' || category == 'establishment') {
 		scroll(0,0);

@@ -321,7 +321,7 @@ map{
 }
 
 hr{
-	margin:0;
+	margin:0 0 15px 0;
 	padding:0;
 	height:5px;
 	background-color:#EA5F28;

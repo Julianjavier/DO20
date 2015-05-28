@@ -11,14 +11,15 @@ if ($key == true) {
 	// $mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
 	$mongo = new Mongo();
 
-
+	//sets the connection
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');
+	//sets the filter.
 	$filter = array('firstName' => $firstName , 'lastName' => $lastName, 'provider' => $provider);
-
+	//holds the data
 	$data = $cursor->find($filter);
 	
 	$length = count(iterator_to_array($data));
-	
+	//check for data and creates basic user fields if user is nat in database.
 	if ($length <= 0) {
 		$data = $cursor->insert(
 		array(
@@ -31,7 +32,7 @@ if ($key == true) {
 			"savedResults" => array()
 			)
 		);	
-
+		//returns new user.
 		$query = $cursor->find($filter);
         foreach($query as $result){
             $result['firstName'];
@@ -45,6 +46,7 @@ if ($key == true) {
 		};	
 	
 	}else{
+		//this makes sure user cannot have more that 20 point sin tasks.
 		$dataCleaner = $cursor->find($filter);
 		foreach($dataCleaner as $result){
 			if ( $result['tasks'] >= 20){
@@ -55,7 +57,7 @@ if ($key == true) {
 				);	
 			};
 		};
-        
+        //this returns user data as the result.
         foreach($data as $result){
             $result['firstName'];
             $result['lastName'];

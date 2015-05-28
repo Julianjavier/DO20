@@ -1,8 +1,8 @@
-do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal", "$http",  function($scope, $rootScope, $firebaseAuth, $modal, $http, $modalInstance){
+do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$localStorage", "$modal", "$http",  function($scope, $rootScope, $firebaseAuth, $localStorage, $modal, $http, $modalInstance){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
-     // $rootScope.session == true;  
-
+	console.log($localStorage.session);
+    
     $scope.authObj.$onAuth(function(authData) {
 	  if(authData){
 	  	//This will provide the data form the specified login provider.
@@ -17,6 +17,7 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
 	        	console.log(mongoData);
 	        	$scope.ID = authData.uid;
 	        	
+	        	//This will set the basic variables to be used by the front end.
 	        	$scope.firstName = mongoData.firstName;
 	        	$scope.lastName = mongoData.lastName;
 	        	$scope.score = mongoData.score;
@@ -26,11 +27,9 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
      	
 	        	$scope.img = facebookObject.picture.data.url;
 
-	        	// && $rootScope.session == true
-	        	if($scope.tasks >= 20 && $scope.list.length > 0) {
-	        		console.log($rootScope.session);
+	        	// thsi fires the mile stone event ir parameters are met
+	        	if($scope.tasks >= 20 && $scope.list.length > 0 && $localStorage.session == true) {
 	        		console.log("SUDO SESSION HAS BEEN CONFIRMED");
-		
 					var modalInstance = $modal.open({
 					    animation: true,
 					    templateUrl: 'view/mileEvent.html',
@@ -50,6 +49,7 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
 	        .success(function(mongoData){
 	        	console.log(mongoData);
 	        	
+	        	//This will set the basic variables to be used by the front end.	        	
 	        	$scope.firstName = mongoData.firstName;
 	        	$scope.lastName = mongoData.lastName;
 	        	$scope.score = mongoData.score;
@@ -64,9 +64,9 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
     	};	    
 	 
 	  } else {
+	  	//thsi will set sudo session
 	  	$rootScope.AuthData = authData;
-	    $rootScope.session = false;
-	    console.log($rootScope.session);
+	    console.log($localStorage.session);
 	  }
 	});
 

@@ -8,7 +8,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	//This is a starting base variable for this search session
 	var score = 20;
 	$scope.stat = false;
-	console.log('We got ', $scope.stat);
+	console.log($rootScope.session);
 
 	//these values are for api selections
 	var category = $routeParams.category;

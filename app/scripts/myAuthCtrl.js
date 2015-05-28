@@ -65,15 +65,14 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$modal"
 	 
 	  } else {
 	  	$rootScope.AuthData = authData;
-	    console.log("Logged out", authData);
 	    $rootScope.session = false;
+	    console.log($rootScope.session);
 	  }
 	});
 
 	//This will hold the instance for the login modal window.
 	$scope.openForm = function () {
 		console.log("Open Fire")
-		// $rootScope.session == false;
 		console.log($rootScope.session);
 		var modalInstance = $modal.open({
 		    animation: true,

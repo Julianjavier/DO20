@@ -235,6 +235,10 @@ form a img{
 	color:#EA5F28;
 }
 
+.results .historyHead{
+	margin-left:10px;
+}
+
 .results h3{
 	color:#4FB848;	
 }
@@ -337,19 +341,30 @@ hr{
 	width:95%;
 	margin:0px auto;
 	margin-bottom:20px;
-	font-size:15px;
+	font-size:20px;
 }
 
 #mileList div{
 	width:100%;
 	font-size:20px;
-	margin-top:10px;
+	margin-top:30px;
+	margin-bottom:30px;
 	overflow:hidden;
+    border-bottom:2px solid #A7A5A3;
+}
+
+#mileList li{
+	list-style:none;
+	font-weight:bold;
+	border-bottom:2px solid #A7A5A3;
+	margin-bottom:20px;
 }
 
 #mileList div li{
-	width:70%;
-	float:left;
+	width:60%;
+	float:right;
+	list-style:none;
+	font-weight:bold;
 }
 
 #mileList div button{
@@ -359,7 +374,8 @@ hr{
 	background-color:#EA5F28;
 	color:#fff;
 	width:30%;
-	float:right;	
+	float:left;	
+	margin-top:6px;	
 }
 /*End result styling*/
 

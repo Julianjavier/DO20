@@ -1,12 +1,12 @@
-do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  "$location",  function($scope, $firebaseAuth, $rootScope, $modal, $http, $location){
+do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", "$http",  "$location",  "$route", function($scope, $firebaseAuth, $rootScope, $modal, $http, $location, $route){
     var ref = new Firebase("https://do20.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
 
     $scope.category = [
 	    { name: 'Now choose...', value: 'null' }, 
-	    { name: 'Something new to do.', value: 'establishment' }, 
-	    { name: 'Somewhere new to eat.', value: 'restaurant' },
-	    { name: 'Something new to cook.', value: 'cooking' },
+	    { name: 'Something new to do', value: 'establishment' }, 
+	    { name: 'Somewhere new to eat', value: 'restaurant' },
+	    { name: 'Something new to cook', value: 'cooking' },
 	];
 
 	$scope.defaultVar = $scope.category[0];	
@@ -15,7 +15,6 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 	  if(authData){
 	  	//This will provide the data form the specified login provider.
 	  	$rootScope.AuthData = authData;
-	  	console.log($rootScope.AuthData);
 
     	if(authData.provider == "facebook"){
 	    	//This will check user information on our mongo database.
@@ -28,12 +27,8 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 	        .success(function(mongoData){
 	        	$scope.list = mongoData.list;
 	        	$scope.userHistory = mongoData["history"];	        	
-	        	console.log(mongoData);
-	        	console.log($scope.list);
-	        	console.log($scope.userHistory);
 		    })
 		    .error(function(mongoData){ 
-		        console.log('NOPE ', mongoData); 
 		    });	
 		    //end mongo call.
     	}else if(authData.provider == "google"){
@@ -47,18 +42,13 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 	        .success(function(mongoData){
 	        	$scope.list = mongoData.list;
 	        	$scope.userHistory = mongoData.history;
-	        	console.log(mongoData);
-	        	console.log($scope.list);
-	        	console.log($scope.userHistory);
 		    })
 		    .error(function(mongoData){ 
-		        console.log('NOPE ', mongoData); 
 		    });		
 		    //end mongo call.
     	};	
 
 		$scope.listItemSubmit = function () {
-			console.log("list submit fire");
 		    var category = $scope.defaultVar.value;
 			var title = $scope.defaultVar.name;		    
 			var task = $scope.toDo.task;
@@ -68,14 +58,12 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 						$http.get('../scripts/getMileList.php?firstName='+$scope.userName+'&lastName='+$scope.lastName+'&provider='+$scope.provider)
 				        .success(function(mongoData){
 				        	$scope.list = mongoData.list;
-				        	console.log($scope.list);
+				        	$route.reload();
 					    })
 					    .error(function(mongoData){ 
-					        console.log('NOPE ', mongoData); 
 					    });					        	
 				    })
 				    .error(function(mongoData){ 
-				        console.log('NONO ',mongoData); 
 				    });
 			};    			
 	   	} 	   	    
@@ -85,7 +73,6 @@ do20.controller('listCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal", 
 		$scope.userName = null;
 		$scope.lastName = null;
 		$scope.provider = null;	    
-	    console.log("Logged out", authData);
 	  }
 	});
 }]);

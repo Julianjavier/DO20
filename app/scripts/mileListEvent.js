@@ -20,7 +20,6 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
             $scope.randResult = $scope.mileList[Math.floor(Math.random() * $scope.mileList.length)];
         })
         .error(function(mongoData){ 
-            console.log('NOPE ',mongoData); 
         }); 
         //end mongo call.
       }else if(authData.provider == "google"){
@@ -35,14 +34,12 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
             $scope.randResult = $scope.mileList[Math.floor(Math.random() * $scope.mileList.length)]; 
         })
         .error(function(mongoData){ 
-            console.log('NOPE ',mongoData); 
         }); 
         //end mongo call.
       };      
    
     } else {
       $rootScope.AuthData = authData;
-      console.log("Logged out", authData);
       // $rootScope.session === false;
     }
   });
@@ -56,7 +53,6 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
 
     $scope.authObj.$onAuth(function(authData) {
       if (authData) {
-      console.log(authData);
       //this two if statments will check for either facebook or google auth. 
       if (authData.provider = "facebook") {
         var facebookObject = authData.facebook.cachedUserProfile;
@@ -87,12 +83,10 @@ do20.controller("MileListEvnet", ["$scope", "$rootScope", "$modal", "$firebaseAu
           };          
           $modalInstance.dismiss('cancel');
         }).error(function(data){
-          console.log()
         }); 
       };      
 
       } else {
-        console.log("Logged out");
       }
     });
 

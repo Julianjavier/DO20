@@ -20,7 +20,7 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$rootScope", "$modal", "$fireba
     $localStorage.session = true;      
     $scope.authObj.$authWithOAuthRedirect("google").then(function(authData) {
       $modalInstance.dismiss('cancel');
-      console.log("google");
+      // console.log("google");
     }).catch(function(error) {
       $localStorage.session = false;
     }); 

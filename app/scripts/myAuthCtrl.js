@@ -4,7 +4,6 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$localS
     
     $scope.authObj.$onAuth(function(authData) {
 	  if(authData){
-	  	console.log(authData);
 	  	//This will provide the data form the specified login provider.
 	  	$rootScope.AuthData = authData;
     	
@@ -14,8 +13,7 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$localS
 	    	$http.get('../scripts/getUserData.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
 	        	$scope.ID = authData.uid;
-	        	console.log(mongoData);
-
+	        	
 	        	//This will set the basic variables to be used by the front end.
 	        	$scope.firstName = mongoData.firstName;
 	        	$scope.lastName = mongoData.lastName;

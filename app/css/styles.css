@@ -365,6 +365,7 @@ hr{
 	float:right;
 	list-style:none;
 	font-weight:bold;
+	border:none;
 }
 
 #mileList div button{

@@ -10,6 +10,7 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$rootScope", "$modal", "$fireba
     $localStorage.session = true;  
     $scope.authObj.$authWithOAuthRedirect("facebook").then(function(authData) {
       $modalInstance.dismiss('cancel'); 
+      console.log("facebook");
     }).catch(function(error) {
       $localStorage.session = false;
     });
@@ -19,6 +20,7 @@ do20.controller("ModalInstanceCtrl", ["$scope", "$rootScope", "$modal", "$fireba
     $localStorage.session = true;      
     $scope.authObj.$authWithOAuthRedirect("google").then(function(authData) {
       $modalInstance.dismiss('cancel');
+      console.log("google");
     }).catch(function(error) {
       $localStorage.session = false;
     }); 

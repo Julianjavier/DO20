@@ -401,3 +401,13 @@ footer div{
 footer div a{
 	color:#EA5F28;
 }
+
+
+/*Media Queries*/
+@media (min-width: 700px){ 
+	form{
+		width:460px;
+	}
+
+}
+

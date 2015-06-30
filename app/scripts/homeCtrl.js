@@ -5,7 +5,7 @@ do20.controller('homeCtrl', ['$scope', '$rootScope', '$location', '$firebaseAuth
 	$scope.category = [
 	    { name: 'I feel like doing...', value: 'null' }, 
 	    { name: 'I want to go out.', value: 'establishment' }, 
-	    { name: 'I want to go Eat.', value: 'restaurant' },
+	    { name: 'I want to go eat.', value: 'restaurant' },
 	    { name: 'I want to cook.', value: 'cooking' }
 	    // { name: 'I want to see a movie.', value: 'movie' }
 	];

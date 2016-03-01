@@ -8,6 +8,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	//This is a starting base variable for this search session
 	var score = 20;
 	$scope.stat = false;
+	$scope.callCompleat = true;
 	console.log($rootScope.session);
 
 	//these values are for api selections
@@ -45,6 +46,8 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			        	$scope.longitude = apiData.geometry.location.lng;
 			        	//This will be used to allow original source viewing.
 			        	$scope.originalSource = "https://www.google.com/maps/place/"+$scope.placeData.formatted_address;
+								$scope.callCompleat = false;
+								console.log($scope.callCompleat);
 			        	}else{
 			        		console.log("we got nothing");
 			        		$location.path('/')
@@ -72,6 +75,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 				$scope.foodData = apiData;
 				$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
 				$scope.originalSource = $scope.foodData[0].source.sourceRecipeUrl;
+				$scope.callCompleat = false;
 				}else{
 					//thsi sends user back to the front in case of bad request or servers are down.
 	        		console.log("we got nothing");
@@ -121,7 +125,11 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 	};
 
 	$scope.reroll = function(){
+		$scope.placeData = undefined;
+		$scope.foodData = undefined;
+
 		//this will execute the reroll functionality.
+		$scope.callCompleat = true;
 		if (category == 'restaurant' || category == 'establishment') {
 			scroll(0,0);
 			//Thsi will hold the longitude and latitude for the location api
@@ -148,6 +156,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 			        	$scope.latitude = apiData.geometry.location.lat;
 			        	$scope.longitude = apiData.geometry.location.lng;
 			        	$scope.originalSource = "https://www.google.com/maps/place/"+$scope.placeData.formatted_address;
+								$scope.callCompleat = false;
 			        	}else{
 			        		console.log("we got nothing");
 			        		$location.path('/')
@@ -167,6 +176,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 					console.log(apiData);
 					$scope.foodData = apiData;
 					$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
+					$scope.callCompleat = false;
 				})
 				.error(function(apiData){
 					console.log('NONO ',apiData);

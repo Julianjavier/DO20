@@ -1,6 +1,6 @@
 html{
     position: relative;
-    min-height: 100%;	
+    min-height: 100%;
 }
 
 body{
@@ -64,7 +64,7 @@ header .avatar{
 	overflow:hidden;
 	border-radius: 150px 150px 150px 150px;
 	-webkit-border-radius: 150px 150px 150px 150px;
-	-moz-border-radius: 150px 150px 150px 150px;	
+	-moz-border-radius: 150px 150px 150px 150px;
 }
 
 header .avatar img{
@@ -118,7 +118,7 @@ header .avatar img{
 	border-top: 10px solid #EA5F28;
 	padding-top:60px;
 	padding-bottom:20px;
-	width:100%;	
+	width:100%;
 }
 
 .mileEvent button{
@@ -178,7 +178,7 @@ form div{
 form input, form .select-style{
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	background-color:#fff; 
+	background-color:#fff;
 	width:100%;
 	height:47px;
 	padding:0 0 0 10px;
@@ -239,12 +239,26 @@ form a img{
 	color:#EA5F28;
 }
 
+.results #buffer{
+  padding-top: 20px;
+  text-align: center;
+}
+
+.results #buffer img{
+width: 100px;
+}
+
+.results #buffer{
+  padding-top: 100px;
+  text-align: center;
+}
+
 .results .historyHead{
 	margin-left:10px;
 }
 
 .results h3{
-	color:#4FB848;	
+	color:#4FB848;
 }
 
 .results #open{
@@ -274,7 +288,7 @@ form a img{
 
 .results .data{
 	width:100%;
-	margin:0 auto;	
+	margin:0 auto;
 	padding:0 15px 20px;
 	overflow:hidden;
 }
@@ -374,14 +388,14 @@ hr{
 
 #mileList div button{
 	-webkit-appearance:none;
-	-moz-appearance:none;	
+	-moz-appearance:none;
 	border:none;
 	outline:none;
 	background-color:#EA5F28;
 	color:#fff;
 	width:36%;
-	float:left;	
-	margin-top:6px;	
+	float:left;
+	margin-top:6px;
 }
 /*End result styling*/
 
@@ -409,10 +423,9 @@ footer div a{
 
 
 /*Media Queries*/
-@media (min-width: 700px){ 
+@media (min-width: 700px){
 	form{
 		width:460px;
 	}
 
 }
-

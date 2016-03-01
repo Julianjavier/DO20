@@ -1,6 +1,6 @@
 do20.controller('apiDetails', ['$scope', '$rootScope','$http', '$location', '$routeParams','$firebaseAuth', '$location', function($scope, $rootScope, $http, $location, $routeParams, $firebaseAuth, $location){
 	//will fire once the submit button from the form to determine wich api to call
-	
+
 	//These are the set up for the firebase connection
 	var ref = new Firebase("https://do20.firebaseio.com");
 	$scope.authObj = $firebaseAuth(ref);
@@ -15,32 +15,32 @@ do20.controller('apiDetails', ['$scope', '$rootScope','$http', '$location', '$ro
 	var id = $routeParams.id
 	console.log(category);
 	console.log(id);
-	
+
 	if (category == 'restaurant' || category == 'establishment') {
 		//this will call for the google places api, with already a filtered result.
-		$http.get('../scripts/getLocationDetails.php?category='+ category +'&id='+ id )
+		$http.get('../scripts/php/getLocationDetails.php?category='+ category +'&id='+ id )
 	        .success(function(apiData){
 	        	if (apiData !== null){
 	        	console.log(apiData);
 	        	$scope.task = apiData.name;
-	        	$scope.itemId = apiData.place_id; 	        	
+	        	$scope.itemId = apiData.place_id;
 	        	$scope.placeData = apiData;
-	        	$scope.status = apiData.opening_hours.open_now; 
+	        	$scope.status = apiData.opening_hours.open_now;
 	        	$scope.latitude = apiData.geometry.location.lat;
-	        	$scope.longitude = apiData.geometry.location.lng;  
+	        	$scope.longitude = apiData.geometry.location.lng;
 	        	$scope.stat = true;
 	        	}else{
 	        		console.log("we got nothing");
 	        		$location.path('/')
-	        	};	
+	        	};
 		    })
-		    .error(function(apiData){ 
-		        console.log('NONO ',apiData); 
+		    .error(function(apiData){
+		        console.log('NONO ',apiData);
 		    });
-	
+
 	}else if (category == 'cooking') {
 		//This will get information from thr yummly api and will have a finite result.
-		$http.get('../scripts/getYumDetails.php?id='+id)
+		$http.get('../scripts/php/getYumDetails.php?id='+id)
 			.success(function(apiData){
 				if (apiData !== null){
 				console.log(apiData);
@@ -49,7 +49,7 @@ do20.controller('apiDetails', ['$scope', '$rootScope','$http', '$location', '$ro
 				console.log($scope.task);
 				$scope.foodData = apiData;
 				$scope.img = $scope.foodData[0].images[0].hostedLargeUrl;
-	        	$scope.stat = true;				
+	        	$scope.stat = true;
 				}else{
 	        		console.log("we got nothing");
 	        		$location.path('/')

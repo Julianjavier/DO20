@@ -13,7 +13,7 @@ header{
 	height:90px;
 	position:relative;
 	background-image: url("../img/shattered.png");
-    border-bottom: 10px solid #EA5F28;
+  border-bottom: 10px solid #EA5F28;
 }
 
 header .logo{
@@ -74,6 +74,16 @@ header .avatar img{
     min-height:100%
 }
 /*End header styles*/
+
+/*Start body*/
+.wrapper{
+  background-color: #FFF;
+  background-image: url("../img/bg2.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+/*End body*/
 
 /*This will handel the modal elements*/
 .loginModel{
@@ -427,5 +437,10 @@ footer div a{
 	form{
 		width:460px;
 	}
+}
 
+@media (max-width: 700px) {
+  .wrapper {
+    background-size: 200%;
+  }
 }

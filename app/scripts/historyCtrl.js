@@ -12,8 +12,8 @@ do20.controller('historyCtrl', ["$scope", "$firebaseAuth", "$rootScope", "$modal
 	    	//This will check user information on our mongo database.
 	    	var facebookObject = authData.facebook.cachedUserProfile;
 		    $scope.userName = facebookObject.first_name;
-			$scope.lastName = facebookObject.last_name;
-			$scope.provider = authData.provider;
+  			$scope.lastName = facebookObject.last_name;
+  			$scope.provider = authData.provider;
 
 	    	$http.get('../scripts/php/getSavedList.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
 	        .success(function(mongoData){

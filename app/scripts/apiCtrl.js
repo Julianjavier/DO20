@@ -30,6 +30,7 @@ do20.controller('apiCtrl', ['$scope', '$rootScope','$http', '$location', '$route
 				$http.get('../scripts/php/getLocation.php?category='+ category +'&keyWord='+ query +"&lat="+ lat + "&lon="+ lon)
 			        .success(function(apiData){
 			        	if (apiData !== null){
+								console.log(apiData);
 			        	//this will segmante the data for easy call to the front end.
 			        	$scope.task = apiData.name;
 			        	$scope.itemId = apiData.place_id;

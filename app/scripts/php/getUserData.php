@@ -1,5 +1,7 @@
 <?
-$firstName = ($_GET['firstName']); 
+ini_set('display_errors', 1);
+require 'vendor/autoload.php';
+$firstName = ($_GET['firstName']);
 $lastName = ($_GET['lastName']);
 $provider = ($_GET['provider']);
 
@@ -7,9 +9,9 @@ $provider = ($_GET['provider']);
 $key = true;
 
 if ($key == true) {
-	
-	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-	// $mongo = new Mongo();
+
+	// $mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+	$mongo = new MongoDB\Client("mongodb://localhost:27017");
 
 	//sets the connection
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');
@@ -17,7 +19,7 @@ if ($key == true) {
 	$filter = array('firstName' => $firstName , 'lastName' => $lastName, 'provider' => $provider);
 	//holds the data
 	$data = $cursor->find($filter);
-	
+
 	$length = count(iterator_to_array($data));
 	//check for data and creates basic user fields if user is nat in database.
 	if ($length <= 0) {
@@ -31,7 +33,7 @@ if ($key == true) {
 			"mileList" => array(),
 			"savedResults" => array()
 			)
-		);	
+		);
 		//returns new user.
 		$query = $cursor->find($filter);
         foreach($query as $result){
@@ -43,18 +45,18 @@ if ($key == true) {
             $result['mileList'];
             $obj = array('firstName' => $result['firstName'] , 'lastName' => $result['lastName'], 'provider' => $result['provider'] ,'score' => $result['score'], 'tasks' => $result['tasks'], 'mileList' => $result['mileList']);
             echo json_encode($obj);
-		};	
-	
+		};
+
 	}else{
 		//this makes sure user cannot have more that 20 point sin tasks.
 		$dataCleaner = $cursor->find($filter);
 		foreach($dataCleaner as $result){
 			if ( $result['tasks'] >= 20){
-				$dataCleaner = $cursor->update( $filter, 
+				$dataCleaner = $cursor->update( $filter,
 						array(
 							'$set' => array("tasks" => 20)
 						)
-				);	
+				);
 			};
 		};
         //this returns user data as the result.

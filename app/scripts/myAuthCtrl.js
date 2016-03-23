@@ -12,6 +12,7 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$localS
 	    	var facebookObject = authData.facebook.cachedUserProfile;
 	    	$http.get('../scripts/php/getUserData.php?firstName='+facebookObject.first_name+'&lastName='+facebookObject.last_name+'&provider='+authData.provider)
 	        .success(function(mongoData){
+            console.log(mongoData);
 	        	$scope.ID = authData.uid;
 
 	        	//This will set the basic variables to be used by the front end.
@@ -24,14 +25,13 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$localS
 	        	$scope.img = facebookObject.picture.data.url;
 
 	        	// thsi fires the mile stone event ir parameters are met
-	        	if($scope.tasks >= 20 && $scope.list.length > 0 && $localStorage.session == true) {
-					var modalInstance = $modal.open({
-					    animation: true,
-					    templateUrl: 'view/mileEvent.html',
-					    controller: 'MileListEvnet'
-					});
-
-	        	};
+	        	// if($scope.tasks >= 20 && $scope.list.length > 0 && $localStorage.session == true) {
+    				// 	var modalInstance = $modal.open({
+    				// 	    animation: true,
+    				// 	    templateUrl: 'view/mileEvent.html',
+    				// 	    controller: 'MileListEvnet'
+    				// 	});
+	        	// };
 		    })
 		    .error(function(mongoData){
 		    });
@@ -63,10 +63,10 @@ do20.controller("myAuthCtrl", ["$scope", "$rootScope", "$firebaseAuth", "$localS
 
 	//This will hold the instance for the login modal window.
 	$scope.openForm = function () {
-		var modalInstance = $modal.open({
-		    animation: true,
-		    templateUrl: 'view/loginModle.html',
-		    controller: 'ModalInstanceCtrl'
-		});
-   	}
+  	var modalInstance = $modal.open({
+  	    animation: true,
+  	    templateUrl: 'view/loginModle.html',
+  	    controller: 'ModalInstanceCtrl'
+  	});
+  }
 }]);

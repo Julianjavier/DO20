@@ -7,8 +7,8 @@ $category = ($_GET['category']);
 $task = ($_GET['task']);
 $title = ($_GET['title']);
 
-// $mongo =  new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-$mongo = new MongoClient();
+$mongo =  new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+// $mongo = new MongoClient();
 //sets the connection
 $rawData = $mongo ->selectDb('do20')->selectCollection('userData');
 //sets the filter.

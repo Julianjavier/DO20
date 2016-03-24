@@ -10,8 +10,8 @@ $key = true;
 
 if ($key == true) {
 
-	// $mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-	$mongo = new MongoDB\Client("mongodb://localhost:27017");
+	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
+	// $mongo = new MongoDB\Client("mongodb://localhost:27017");
 
 	//sets the connection
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');

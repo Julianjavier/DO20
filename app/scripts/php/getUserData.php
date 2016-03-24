@@ -1,6 +1,6 @@
 <?
 ini_set('display_errors', 1);
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 $firstName = ($_GET['firstName']);
 $lastName = ($_GET['lastName']);
 $provider = ($_GET['provider']);
@@ -11,7 +11,6 @@ $key = true;
 if ($key == true) {
 
 	$mongo = new MongoClient("mongodb://julianjavier:drebin893@localhost/do20");
-	// $mongo = new MongoDB\Client("mongodb://localhost:27017");
 
 	//sets the connection
 	$cursor = $mongo->selectDb('do20')->selectCollection('userData');

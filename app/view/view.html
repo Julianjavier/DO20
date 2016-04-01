@@ -6,23 +6,23 @@
 
 	<div ng-if="placeData">
 		<div class="visData">
-			<map center="{{latitude}},{{longitude}}" zoom="15" disable-default-u-i="true" >
-				<marker position="{{latitude}},{{longitude}}" title="Hello World!"></marker>
+			<map center="{{placeData.latitude}},{{placeData.longitude}}" zoom="15" disable-default-u-i="true" >
+				<marker position="{{placeData.latitude}},{{placeData.longitude}}" title="Hello World!"></marker>
 			</map>
 		</div>
 		<hr>
 		<div class="data">
 			<h1>{{placeData.name}}</h1>
 
-			<h3 ng-if="rating"><i class="fa fa-star"></i> {{rating}}</h3>
+			<h3 ng-if="rating"><i class="fa fa-star"></i> {{placeData.rating}}</h3>
 
 			<p><strong>Address:</strong> {{placeData.vicinity}}</p>
-			<p><strong>Phone:</strong> {{placeData.formatted_phone_number}}</p>
+			<p><strong>Phone:</strong> {{placeData.phone}}</p>
 
 			<h3 ng-if="status == true" id="open" >Open</h3>
 			<h3 ng-if="status == false" id="closed" >Closed</h3>
 			<ul>
-				<li ng-repeat="times in placeData.opening_hours.weekday_text track by $index">- {{times}}</li>
+				<li ng-repeat="times in placeData.hours track by $index">- {{times}}</li>
 			</ul>
 
 			<div ng-hide="stat">
@@ -39,18 +39,18 @@
 
 	<div ng-if="foodData">
 		<div class="visData">
-			<img src="{{img}}">
+			<img src="{{foodData.img}}">
 		</div>
 		<hr>
 		<div class="data">
-			<h1>{{foodData[0].name}}</h1>
-			<h3><i class="fa fa-star"></i> {{foodData[0].rating}}</h3>
+			<h1>{{foodData.task}}</h1>
+			<h3><i class="fa fa-star"></i> {{foodData.rating}}</h3>
 			<h3>Ingredients:</h3>
 			<ul>
-				<li ng-repeat="ingredients in foodData[0].ingredientLines track by $index">- {{ingredients}}</li>
+				<li ng-repeat="ingredients in foodData.ingredients track by $index">- {{ingredients}}</li>
 			</ul>
-			<p><strong>{{foodData[0].yield}}</strong></p>
-			<p><strong>Total Time:</strong> {{foodData[0].totalTime}}</p>
+			<p><strong>Yield: {{foodData.yield}}</strong></p>
+			<p><strong>Total Time:</strong> {{foodData.totalTime}}</p>
 
 			<div ng-hide="stat">
 				<button id="confirm" ng-click="confirm()">LET'S GO</button>

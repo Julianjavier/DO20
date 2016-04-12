@@ -1,6 +1,6 @@
 var do20 = angular.module('do20', ["ngRoute", "ngTouch", "ngStorage", "firebase", "ngMap", "ui.bootstrap"]);
 
-do20.config(['$routeProvider', '$provide', function($routeProvider, $provide){
+do20.config(['$routeProvider', '$provide','$locationProvider', function($routeProvider, $provide, $locationProvider){
 	$routeProvider.when('/', {
 
 		templateUrl:'view/form.html',
@@ -27,4 +27,7 @@ do20.config(['$routeProvider', '$provide', function($routeProvider, $provide){
 		controller:'apiDetails'
 
 	});
+
+	// use the HTML5 History API to remove "#" from url
+  $locationProvider.html5Mode(true);
 }]);
